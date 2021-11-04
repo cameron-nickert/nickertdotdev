@@ -3,9 +3,6 @@
     <mdb-container style="padding: .5em;">
       <span>You Need Software. I Make Software. Let's Talk!</span>
       <div class="mt-2 mb-2 code">
-        <a href="tel:+19893503262" class="pink-text mt-2 ml-2 mr-2 d-inline-flex">
-          <i class="fas fa-phone-volume mr-1"></i>+1(989)350-3262
-        </a>
         <a href="mailto:cameron@nickert.dev" class="pink-text mt-2 ml-2 mr-2 d-inline-flex">
           <i class="fas fa-envelope mr-1"></i>cameron@nickert.dev
         </a>

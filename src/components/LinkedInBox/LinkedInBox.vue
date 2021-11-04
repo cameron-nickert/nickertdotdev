@@ -1,19 +1,14 @@
 <template>
-  <div class="linkedin-box text-left">
+  <div class="iframe_wrapper py-4">
     <div
-      class="LI-profile-badge"
-      data-version="v1"
-      data-size="large"
+      class="badge-base LI-profile-badge"
       data-locale="en_US"
-      data-type="horizontal"
+      data-size="large"
       data-theme="light"
+      data-type="HORIZONTAL"
       data-vanity="cameron-nickert"
-    >
-      <a
-        class="LI-simple-link"
-        href="https://www.linkedin.com/in/cameron-nickert?trk=profile-badge"
-      >Cameron Nickert</a>
-    </div>
+      data-version="v1"
+    ></div>
   </div>
 </template>
 
@@ -23,25 +18,34 @@
 export default {
   name: "LinkedInBox",
   props: {
-    msg: String
-  }
+    msg: String,
+  },
+  created: function() {
+    setTimeout(() => {
+      this.injectScript();
+    }, 1000);
+  },
+  methods: {
+    injectScript: () => {
+      let script = window.document.createElement("script");
+      script.type = "text/javascript";
+      script.async = true;
+      script.defer = true;
+      script.onload = function() {
+        // remote script has loaded
+      };
+      script.src = "https://platform.linkedin.com/badges/js/profile.js";
+      window.document.getElementsByTagName("body")[0].appendChild(script);
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.iframe_wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 </style>
