@@ -12,37 +12,135 @@
       >
     </div>
     <LifeStoryEvent
-      year="2010"
+      year="2008"
       title="MySpace Layouts"
       desc="Created myspace layouts for friends and family"
-      note="html/css"
+      note="HTML & CSS"
     />
     <LifeStoryEvent
-      year="2010"
+      year="2009"
       title="First Website"
-      desc="With the help of a tech savy family member, I launch my first website that hosted my portfolio of MySpace layouts."
-      note="html/css"
+      desc="I launch my first website that hosted my portfolio of MySpace layouts called fusionlayouts.com"
+      note="HTML & CSS"
     />
 
     <LifeStoryEvent
       year="2012"
-      title="Robox games"
-      desc="Created game on Roblox gaming platform for fun and earned 250,000+ visits"
-      note="lua"
+      title="Roblox games"
+      desc="Created games on Roblox gaming platform and earned 250,000+ visits"
+      note="Lua"
+    />
+
+    <LifeStoryEvent
+      year="2013 & 2014"
+      title="Robotics"
+      desc="Member of high-school robotics team and in charge of programming the robot"
+      note="LabView"
     />
 
     <LifeStoryEvent
       year="2013"
-      title="Robotics"
-      desc="Joined my highschool robotics team and programed the robot"
-      note="java"
+      title="First Job"
+      desc="Worked full time as summer janitorial help at local factory"
+      note=""
     />
 
-        <LifeStoryEvent
+    <LifeStoryEvent
+      year="2013 - 2016"
+      title="Local Restaruant"
+      desc="Was a dishwasher, then host, and then a cook at a local restaurant"
+      note=""
+    />
+
+    <LifeStoryEvent
       year="2014"
+      title="Graduated High School"
+      desc="Johannesburg-Lewiston High School"
+      note=""
+    />
+
+    <LifeStoryEvent
+      year="2014 - 2018"
       title="Undergrad"
-      desc="Enrolled at Central Michigan Univeristy for B.S. Computer Science. Minors in IT & Mathematics."
-      note="java"
+      desc="Enrolled at Central Michigan Univeristy"
+      note="Java, SQL, JavaScript, Android, Python, C#, Ruby, C++, HTML, CSS, ASPT.NET"
+    />
+
+    <LifeStoryEvent
+      year="2015 & 2016"
+      title="Robotics Mentor"
+      desc="Taught high-school kids how to program and wire the robot"
+      note="Java"
+    />
+
+    <LifeStoryEvent
+      year="2017"
+      title="Internship"
+      desc="Software development internship at Gordon Food Service"
+      note="Java, SpringBoot, JavaScript, Angular.JS, Bootstrap, HTML, CSS, Android"
+    />
+
+    <LifeStoryEvent
+      year="2018"
+      title="Graduated College"
+      desc="Bachelors of Science in Computer Science"
+      note="Minors in Information Technology & Mathematics"
+    />
+
+    <LifeStoryEvent
+      year="2018"
+      title="Ford College Graduate"
+      desc="Started a college graduate rotational program at Ford as an entry level software engineer"
+      note="Java, SpringBoot, JavaScript, React, GitHub, Jenkins, PCF"
+    />
+
+    <LifeStoryEvent
+      year="2019 - 2021"
+      title="Grad school"
+      desc="Enrolled at University of Michigan - Dearborn"
+      note=""
+    />
+
+    <LifeStoryEvent
+      year="2019"
+      title="Promoted"
+      desc="Exited the rotational Ford program early and stayed on as a Software Engineer on my team."
+      note=""
+    />
+
+    <LifeStoryEvent
+      year="2020"
+      title="Promoted"
+      desc="Became the Anchor Software Engineer for my team"
+      note=""
+    />
+
+    <LifeStoryEvent
+      year="2020 - now"
+      title="Started Company"
+      desc="Started a small software company with co-worker to help local businesses"
+      note="TypeScript, React, Node.js, AWS, DynamoDB, S3, AWS Lambda"
+    />
+
+    <LifeStoryEvent
+      year="2021"
+      title="Finished Grad School"
+      desc="Master's of Science in Software Engineering"
+      note=""
+    />
+
+    <LifeStoryEvent
+      year="2021"
+      title="Promoted"
+      desc="Entered Ford's GSR8 catergory (highest without being managment)"
+      note=""
+    />
+
+    <LifeStoryEvent
+      year="2021 - now"
+      title="Indeed"
+      desc="Started as a Software Engineer - II at Indeed.com"
+      note="JavaScript, React, Java, Spring"
     />
   </div>
 </template>
