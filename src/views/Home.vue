@@ -3,7 +3,7 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <Hero />
-    <mdb-container fluid class="elegant-color p-5">
+    <mdb-container fluid class="elegant-color-dark p-5">
       <div class="pink-text text-center m-auto code w-100">
         <h1 class="mb-5">Who I Am.</h1>
         <mdb-row class="text-center">
@@ -50,10 +50,16 @@
         </mdb-row>
       </div>
     </mdb-container>
+    <mdb-container fluid class="elegant-color p-5">
+      <div class="pink-text text-center m-auto code w-100">
+        <h1>My Story.</h1>
+        <LifeStory />
+      </div>
+    </mdb-container>
     <mdb-container fluid class="cloudy-knoxville-gradient pb-3">
       <mdb-row>
         <mdb-col col="sm" class="pt-3">
-          <h4 class="mt-3">Resume</h4>
+          <h4 class="mt-3">Resume.</h4>
           <Resume />
         </mdb-col>
         <mdb-col lg="5" xl="4">
@@ -74,6 +80,8 @@ import Hero from "@/components/Home/Hero.vue";
 import LinkedInBox from "@/components/LinkedInBox/LinkedInBox";
 import Footer from "@/components/Footer.vue";
 import Resume from "@/components/Home/Resume";
+import LifeStory from "@/components/Home/LifeStory";
+
 import {
   mdbContainer,
   mdbRow,
@@ -91,6 +99,7 @@ export default {
     LinkedInBox,
     Footer,
     Resume,
+    LifeStory,
   },
 };
 </script>
