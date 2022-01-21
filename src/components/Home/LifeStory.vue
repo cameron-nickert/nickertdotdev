@@ -5,9 +5,9 @@
         type="checkbox"
         class="custom-control-input"
         id="customSwitches"
-        checked
+        v-model="checked"
       />
-      <label class="custom-control-label" for="customSwitches"
+      <label class="custom-control-label text-white" for="customSwitches"
         >Professional Only</label
       >
     </div>
@@ -54,6 +54,14 @@
 
     <LifeStoryEvent
       year="2014"
+      title="Track & Field MVP"
+      desc="Long jump, high jump, 4x100 relay"
+      note=""
+      v-bind:hidePersonal="checked"
+    />
+
+    <LifeStoryEvent
+      year="2014"
       title="Graduated High School"
       desc="Johannesburg-Lewiston High School"
       note=""
@@ -74,10 +82,26 @@
     />
 
     <LifeStoryEvent
+      year="2016"
+      title="Europe Trip"
+      desc="Travelled to Austria, Czech Republic, and Poland"
+      note=""
+      v-bind:hidePersonal="checked"
+    />
+
+    <LifeStoryEvent
       year="2017"
       title="Internship"
       desc="Software development internship at Gordon Food Service"
       note="Java, SpringBoot, JavaScript, Angular.JS, Bootstrap, HTML, CSS, Android"
+    />
+
+    <LifeStoryEvent
+      year="2018"
+      title="New Puppy Titus"
+      desc="A cute fluffball joined"
+      note=""
+      v-bind:hidePersonal="checked"
     />
 
     <LifeStoryEvent
@@ -92,6 +116,22 @@
       title="Ford College Graduate"
       desc="Started a college graduate rotational program at Ford as an entry level software engineer"
       note="Java, SpringBoot, JavaScript, React, GitHub, Jenkins, PCF"
+    />
+
+    <LifeStoryEvent
+      year="2018"
+      title="First House"
+      desc="Bought a house near my job"
+      note=""
+      v-bind:hidePersonal="checked"
+    />
+
+    <LifeStoryEvent
+      year="2018"
+      title="Engaged in Italy"
+      desc=""
+      note=""
+      v-bind:hidePersonal="checked"
     />
 
     <LifeStoryEvent
@@ -123,6 +163,14 @@
     />
 
     <LifeStoryEvent
+      year="2020"
+      title="Married in Washington State"
+      desc="Married in Mt Rainier National Park"
+      note=""
+      v-bind:hidePersonal="checked"
+    />
+
+    <LifeStoryEvent
       year="2021"
       title="Finished Grad School"
       desc="Master's of Science in Software Engineering"
@@ -134,6 +182,22 @@
       title="Promoted"
       desc="Entered Ford's GSR8 catergory (highest without being managment)"
       note=""
+    />
+
+    <LifeStoryEvent
+      year="2021"
+      title="New House"
+      desc="Moved into a bigger house in Michigan to settle down into"
+      note=""
+      v-bind:hidePersonal="checked"
+    />
+
+    <LifeStoryEvent
+      year="2021"
+      title="Loki"
+      desc="Titus got a fluffy twin brother"
+      note=""
+      v-bind:hidePersonal="checked"
     />
 
     <LifeStoryEvent
@@ -152,6 +216,9 @@ import LifeStoryEvent from "./LifeStoryEvent.vue";
 export default {
   name: "Resume",
   components: { LifeStoryEvent },
+  data: () => {
+    return { checked: true };
+  },
   directives: {
     animateOnScroll,
   },

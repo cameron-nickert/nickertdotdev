@@ -1,14 +1,14 @@
 <template>
-  <div class="row d-flex my-0 py-0">
+  <div class="row d-flex my-0 py-0" v-if="!hidePersonal">
     <div
       class="col-md-2 animated ml-auto border-right border-light d-flex my-0 py-0"
-      v-animateOnScroll="{ animation: 'fadeInDown', delay: 500 }"
+      v-animateOnScroll="{ animation: 'fadeInDown', delay: 100, position: 12 }"
     >
-      <h2 class="m-auto">{{ year }}</h2>
+      <h2 class="h3 m-auto">{{ year }}</h2>
     </div>
     <div
       class="col-md-4 animated mr-auto my-0 py-0"
-      v-animateOnScroll="{ animation: 'fadeInRight', delay: 1000 }"
+      v-animateOnScroll="{ animation: 'fadeInRight', delay: 100, position: 12 }"
     >
       <h3 class="h5 pink-text">{{ title }}</h3>
       <p class="text-white">
@@ -28,7 +28,7 @@ export default {
     title: String,
     desc: String,
     note: String,
-    right: Boolean,
+    hidePersonal: Boolean,
   },
   components: {},
   directives: {
@@ -44,5 +44,9 @@ p {
   em {
     font-family: "Courier Prime Code";
   }
+}
+
+.row {
+  overflow: hidden;
 }
 </style>
