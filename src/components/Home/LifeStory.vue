@@ -6,6 +6,7 @@
         class="custom-control-input"
         id="customSwitches"
         v-model="checked"
+        @change="onToggle"
       />
       <label class="custom-control-label text-white" for="customSwitches"
         >Professional Only</label
@@ -177,17 +178,12 @@
       note=""
     />
 
-    <LifeStoryEvent
-      year="2021"
-      title="Promoted"
-      desc="Entered Ford's GSR8 catergory (highest without being managment)"
-      note=""
-    />
+    <LifeStoryEvent year="2021" title="Promoted" desc="" note="" />
 
     <LifeStoryEvent
       year="2021"
       title="New House"
-      desc="Moved into a bigger house in Michigan to settle down into"
+      desc="Moved into a new house in Michigan to settle down into"
       note=""
       v-bind:hidePersonal="checked"
     />
@@ -201,9 +197,16 @@
     />
 
     <LifeStoryEvent
-      year="2021 - now"
+      year="2021 - 2022"
       title="Indeed"
       desc="Started as a Software Engineer - II at Indeed.com"
+      note="JavaScript, React, Java, Spring"
+    />
+
+    <LifeStoryEvent
+      year="2022 - now"
+      title="Shopify"
+      desc="Started as a Software Developer at Shopify"
       note="JavaScript, React, Java, Spring"
     />
   </div>
@@ -222,6 +225,11 @@ export default {
   directives: {
     animateOnScroll,
   },
+  methods: {
+    onToggle: ()=>{
+      window.dispatchEvent(new Event("scoll"));
+    }
+  }
 };
 </script>
 
