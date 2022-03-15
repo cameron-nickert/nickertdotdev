@@ -225,7 +225,7 @@ export default {
     animateOnScroll,
   },
   watch: {
-    checked: function(val, oldVal) {
+    checked: function() {
       setTimeout(() => {
         window.dispatchEvent(new Event("scoll"));
       }, 10);
