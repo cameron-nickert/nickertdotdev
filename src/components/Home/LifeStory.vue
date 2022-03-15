@@ -6,7 +6,6 @@
         class="custom-control-input"
         id="customSwitches"
         v-model="checked"
-        @change="onToggle"
       />
       <label class="custom-control-label text-white" for="customSwitches"
         >Professional Only</label
@@ -225,11 +224,13 @@ export default {
   directives: {
     animateOnScroll,
   },
-  methods: {
-    onToggle: ()=>{
-      window.dispatchEvent(new Event("scoll"));
-    }
-  }
+  watch: {
+    checked: function(val, oldVal) {
+      setTimeout(() => {
+        window.dispatchEvent(new Event("scoll"));
+      }, 10);
+    },
+  },
 };
 </script>
 
