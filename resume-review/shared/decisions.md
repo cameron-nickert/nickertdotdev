@@ -1,0 +1,34 @@
+# Decisions
+
+Format
+- Date - decision - rationale
+- 2026-02-13 - Keep issue bar, tape, and skyline endcap as primary comic artifacts while reducing global shadow/tilt/texture intensity - preserves identity without sacrificing recruiter readability.
+- 2026-02-13 - Remove rotation from project cards but keep subtle tilt on experience cards - reinforces experience as primary and lowers noise in secondary content.
+- 2026-02-14 - Prioritize Experience as the primary scan target by demoting left-column blocks and projects - Keeps recruiter eye path Name/Role -> Experience -> Proof.
+- 2026-02-14 - Preserve comic identity elements while tuning hierarchy - Avoids regression in brand personality.
+- 2026-02-13 - Adopt a 7-step spacing token rhythm (0.08/0.12/0.2/0.28/0.36/0.5/0.7rem) to normalize panel padding, gaps, and micro margins while preserving current layout density.
+- 2026-02-13 - Rebalance columns toward parity (0.96/1.04) to reduce left-column compression while keeping right column primary - supports scanflow and one-page composition.
+- 2026-02-13 - Lighten left-column "loud" panels and reduce rotation jitter to restore hierarchy without removing comic styling - preserves identity with calmer rhythm.
+- 2026-02-13 - Demote project cards via lighter fill and reduced shadow to keep Experience dominant - clarifies section weight hierarchy.
+- 2026-02-13 - Increase typographic separation between item headings, body text, and meta text to restore hierarchy in Experience and Projects - Experience items are primary scan targets and need clearer contrast from bullets and metadata.
+- 2026-02-13 - Slightly darken the role/title line while softening meta and labels - Supports the Name → Role → Contact scan order without changing layout.
+- 2026-02-13 - Recommend removing card/pill rotations at <=1100px/print and adding contact link wrapping to prevent clipping artifacts while preserving desktop comic style.
+- 2026-02-13 - Recommend print-only texture reduction for `.blockSoftAccent` and slight pill font bump to improve print legibility without altering screen design.
+- 2026-02-14 - Prioritize scanflow by making Experience the only loud panel and demoting Summary/Highlights/Wins via CSS-only changes - preserves one-page safety and minimizes structural risk while improving readability.
+- 2026-02-14 - Resolve scanflow vs low-risk change by keeping Impact Wins in place and demoting styling instead of moving blocks - aligns with CSS-first preference.
+- 2026-02-14 - Apply print texture/rotation reductions only in print media rules - maintains comic identity on screen while protecting print legibility.
+- 2026-02-14 - Further demote issue bar, contact pills, and wins/skills saturation to stabilize Name/Role -> Experience scan path - maintains comic styling while reducing top-of-page competition.
+- 2026-02-14 - Preserve two-column structure; use column ratio changes to bias Experience without content removal - keeps one-page layout intact.
+- 2026-02-13 - Promote Experience/Project item headings to semantic `h3` and widen size/line-height gap vs body - restores clear hierarchy within primary content blocks.
+- 2026-02-13 - Slightly reduce issue-bar size/tracking and loosen body/bullet line-height - improves 6-second scan without altering layout density.
+- 2026-02-14 - Shift grid columns closer to parity (0.96/1.04) to relieve left-column compression while keeping Experience primary - supports balance without reflow risk.
+- 2026-02-14 - Allow header to auto-size with a minimum height to avoid clipping and improve breathing room - preserves one-page layout while reducing top congestion.
+- 2026-02-14 - Remove project card rotation and further lighten secondary panels to reinforce Experience as the dominant section - clarifies hierarchy while keeping comic styling.
+- 2026-02-13 - Remove project-card and skill-pill rotations while keeping a subtle Experience tilt - reduces noise yet preserves comic depth in the primary section.
+- 2026-02-13 - Lower burst/texture/shadow intensity instead of removing artifacts outright - keeps comic identity without competing with header scan.
+- 2026-02-13 - Align print `.sheet` dimensions with the 0.35in @page margin to prevent edge clipping; accept a slightly smaller printed area to protect borders and text.
+- 2026-02-13 - Keep spacing adjustments tokenized to a 7-step rhythm and avoid any increases to grid/column gaps to protect one-page layout.
+- 2026-02-14 - Reduce issue bar and contact pill dominance before additional layout changes - improves scanflow with lowest layout risk.
+- 2026-02-14 - Prefer semantic heading tags for item heads over further CSS-only tweaks - improves hierarchy and accessibility with minimal layout impact.
+- 2026-02-14 - Use grid ratio adjustment (0.96/1.04) instead of reordering blocks - biases Experience without reflow risk.
+- 2026-02-14 - Fix print margin mismatch by aligning .sheet size to @page margin - prevents edge clipping without affecting screen layout.

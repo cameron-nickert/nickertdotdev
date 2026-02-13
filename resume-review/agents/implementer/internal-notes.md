@@ -1,0 +1,3 @@
+- Re-applied orchestrator plan after site update; scoped to specified resume files.
+- Lint rerun via `npm run lint`; failures remain in unrelated files and existing img usage.
+- Focused on scanflow hierarchy, semantic item heads, and print margin alignment.

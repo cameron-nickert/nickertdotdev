@@ -1,0 +1,28 @@
+# Scene UI B Handoff
+
+- Scene sections updated in `app/page.tsx` with story timeline, work details, resume embed, and contact CTA/form.
+- New CSS hooks added in `app/globals.css` for timeline, resume embed, and contact form layouts.
+- Asset requests logged in `developer-agents/04-scene-ui-b/asset-requests.md`.
+- Replace `resumeEmbedUrl` placeholder in `app/page.tsx` with the real Google Drive file ID when available.
+- Resume embed now points to Google Drive file ID `1SnfmDmprQQHFUoLMgspcm8p5xYOZEq5I`.
+- Assets moved from project root to:
+  - public/images/scene-03-story/timeline-art.png
+  - public/images/scene-04-work/work-card-01.png
+  - public/images/scene-04-work/work-card-02.png
+  - public/images/scene-04-work/work-card-03.png
+  - public/images/scene-05-resume/resume-frame.png
+  - public/images/scene-06-contact/contact-illustration.png
+- Updated assets from root for timeline, resume frame, and contact illustration with transparent versions.
+- Assets refreshed from root with new transparent PNGs for timeline, work cards, resume frame, and contact illustration.
+- Latest asset mapping from root:
+  - timeline-art.png -> public/images/scene-03-story/timeline-art.png
+  - resume-frame.png -> public/images/scene-05-resume/resume-frame.png
+  - contact.png -> public/images/scene-06-contact/contact-illustration.png
+  - shopp-e-btwcb129n5mew1mfj3dkvg5v-digital-data-security-and-sharing-illustration.png -> public/images/scene-04-work/work-card-01.png
+  - shopp-e-xncmas5g5r31ec3gblzme46h-man-making-a-split-payment-for-grocery-purchase.png -> public/images/scene-04-work/work-card-02.png
+  - shopp-e-dffpjedfvlgknaljhrhgikpo-order-processing-and-delivery-workflow-with-smiling-clouds.png -> public/images/scene-04-work/work-card-03.png
+- Resume frame asset updated from root: public/images/scene-05-resume/resume-frame.png
+- Resume frame asset refreshed again from root: public/images/scene-05-resume/resume-frame.png
+- Resume frame asset replaced with resume-frame(2).png from root.
+- Final resume frame asset updated from root: public/images/scene-05-resume/resume-frame.png
+- Resume frame asset replaced with resume-frame(1).png from root.

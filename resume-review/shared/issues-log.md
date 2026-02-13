@@ -1,0 +1,66 @@
+# Issues Log
+
+Format
+- [severity] issue description (file:line if known)
+
+Severities
+- critical
+- high
+- medium
+- low
+- [medium] Stacked rotations and shadows across blocks/cards/pills create visual noise and reduce recruiter scan clarity (app/resume/fullscreen/page.module.css)
+- [low] Burst artifacts near the header compete with the name/title for attention (app/resume/fullscreen/page.module.css)
+- [low] Exclamation badges on every .blockLoud add repetitive clutter without hierarchy signal (app/resume/fullscreen/page.module.css)
+- [high] Equal visual weight across Summary/Highlights/Wins and Experience due to shared `blockLoud` styling, causing scan bounce (app/resume/fullscreen/page.tsx).
+- [high] Contact pills compete with name/role because of heavy border/shadow and bold weight (app/resume/fullscreen/page.module.css).
+- [medium] Impact Wins and skills/interest pills use saturated yellow and heavy weight that draws attention away from Experience (app/resume/fullscreen/page.module.css).
+- [medium] Project cards are visually too similar to experience cards, weakening primary/secondary hierarchy (app/resume/fullscreen/page.module.css).
+- [low] Left column starts with multiple loud blocks, delaying Experience in the initial scan (app/resume/fullscreen/page.tsx).
+- [high] Column imbalance: left column is narrower but carries more blocks, compressing content (app/resume/fullscreen/page.module.css).
+- [high] Hierarchy flattened by multiple "loud" panels; Experience does not read primary (app/resume/fullscreen/page.module.css).
+- [medium] Projects visually compete with Experience due to similar card weight/shadow (app/resume/fullscreen/page.module.css).
+- [medium] Fixed header height with overflow hidden risks cramped identity area and clipping (app/resume/fullscreen/page.module.css).
+- [medium] Rotation cadence on cards introduces jitter and disrupts scan rhythm (app/resume/fullscreen/page.module.css).
+- [medium] Contact pills appear equal priority to identity block in header (app/resume/fullscreen/page.module.css).
+- [low] Inconsistent gap/padding across header/grid/columns interrupts vertical rhythm (app/resume/fullscreen/page.module.css).
+- [low] Skills and interests have near-equal visual weight, weakening sub-hierarchy (app/resume/fullscreen/page.module.css).
+- [low] Endcap panel shadow/border competes with core content cards (app/resume/fullscreen/page.module.css).
+- [low] Issue bar prominence competes with header hierarchy at a glance (app/resume/fullscreen/page.module.css).
+- [medium] Spacing values are highly granular (0.02–0.7rem) across header/grid/panels, causing jittery rhythm and inconsistent padding alignment (app/resume/fullscreen/page.module.css).
+- [medium] Vertical spacing stack in `.grid` + `.left/.right` + list gaps is tight; any padding/gap increases risk overflow in 8.5x11 layout (app/resume/fullscreen/page.module.css).
+- [high] Experience/project item headings are too close to body size, flattening hierarchy within primary content. (`app/resume/fullscreen/page.module.css:478`)
+- [medium] Body and bullet line-height is tight across summary and lists, reducing legibility at one-page scale. (`app/resume/fullscreen/page.module.css:334`)
+- [medium] Role/title and meta share muted color and similar size, weakening the Name → Role scan step. (`app/resume/fullscreen/page.module.css:183`)
+- [medium] Contact pills use very small heavy type, harming readability. (`app/resume/fullscreen/page.module.css:223`)
+- [low] Issue bar typography competes with header attention. (`app/resume/fullscreen/page.module.css:94`)
+- [high] <=1100px rotated cards can clip inside `.left`/`.right` due to `overflow: hidden` (app/resume/fullscreen/page.module.css)
+- [medium] Contact pills can overflow on <=1100px because long strings have no wrap rules (app/resume/fullscreen/page.module.css)
+- [medium] Print keeps skill pill rotations, risking fuzzy text and edge clipping (app/resume/fullscreen/page.module.css)
+- [medium] Print retains `blockSoftAccent` textures, which can muddy output and reduce contrast (app/resume/fullscreen/page.module.css)
+- [low] Print font sizes for skills/interests/wins are near legibility limits (app/resume/fullscreen/page.module.css)
+- [medium] Issue bar still outcompetes header identity due to saturated background and uppercase type (app/resume/fullscreen/page.module.css).
+- [medium] Contact pills remain boxed and right-aligned, pulling attention away from name/role (app/resume/fullscreen/page.module.css).
+- [medium] Wins and skill/interest pills still use high-saturation fills and rotation, distracting from Experience bullets (app/resume/fullscreen/page.module.css).
+- [medium] Project cards still too close to Experience in heading size/weight, weakening primary/secondary scan order (app/resume/fullscreen/page.module.css).
+- [low] Left column still starts with three callout blocks before Experience, delaying the primary scan target (app/resume/fullscreen/page.tsx).
+- [high] Experience/project item heads still read like body copy due to narrow size gap and non-heading tags. (`app/resume/fullscreen/page.tsx:241`)
+- [medium] Body and bullet line-height remains tight for fast scanning in summary and experience bullets. (`app/resume/fullscreen/page.module.css:334`)
+- [medium] Contact pills remain small with tight line-height, slowing header contact parsing. (`app/resume/fullscreen/page.module.css:223`)
+- [low] Issue bar typography remains relatively loud and competes with name/role. (`app/resume/fullscreen/page.module.css:94`)
+- [high] Column imbalance persists; left column is narrower but carries more stacked blocks (app/resume/fullscreen/page.module.css).
+- [high] Fixed header height with overflow hidden constrains identity area and risks clipping (app/resume/fullscreen/page.module.css).
+- [medium] Rotations combined with column overflow hidden can clip cards and disrupt rhythm (app/resume/fullscreen/page.module.css).
+- [medium] Projects still read close to Experience due to similar card weight and tilt (app/resume/fullscreen/page.module.css).
+- [medium] Issue bar size/letter-spacing continues to compete with header hierarchy (app/resume/fullscreen/page.module.css).
+- [medium] Contact pills remain visually heavy and pull attention from name/role (app/resume/fullscreen/page.module.css).
+- [low] Grid/column padding and gap values remain slightly mismatched, causing uneven vertical rhythm (app/resume/fullscreen/page.module.css).
+- [low] Skills and interests retain similar visual weight, weakening sub-hierarchy in the left column (app/resume/fullscreen/page.module.css).
+- [low] Endcap shadow/border still reads as a primary panel, pulling attention downward (app/resume/fullscreen/page.module.css).
+- [low] Issue bar + header stack feels top-heavy, slowing scan into the grid (app/resume/fullscreen/page.module.css).
+- [medium] Project cards still rotate like Experience, so secondary content keeps competing with primary scan targets (app/resume/fullscreen/page.module.css)
+- [low] Skill pill rotations and color accents add micro-jitter without hierarchy value (app/resume/fullscreen/page.module.css)
+- [low] Burst opacity near the header remains a mild attention pull against the name/role (app/resume/fullscreen/page.module.css)
+- [high] Print margin mismatch: @page margin 0.35in but print `.sheet` size uses 0.25in margins, causing edge clipping (app/resume/fullscreen/page.module.css)
+- [low] Print border/inner outline make margin clipping more visible at page edges (app/resume/fullscreen/page.module.css)
+- [medium] Spacing scale still uses many near-adjacent values (0.34/0.36/0.38/0.4/0.42/0.44/0.46/0.5), keeping rhythm jittery even after hierarchy updates (app/resume/fullscreen/page.module.css).
+- [medium] Header remains fixed at 152px while portrait height is 146px and padding is non-trivial; any spacing increase risks clipping or cramping (app/resume/fullscreen/page.module.css).
