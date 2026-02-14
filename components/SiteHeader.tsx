@@ -17,6 +17,7 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const [activeId, setActiveId] = useState<string | null>(navItems[0]?.id ?? "home");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (isHomePage) {
@@ -133,14 +134,48 @@ export default function SiteHeader() {
     };
   }, [isHomePage]);
 
+  // Close the mobile menu when viewport grows or on Escape
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", onResize);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isMenuOpen]);
+
   return (
-    <header className="site-header">
+    <header className="site-header" data-menu-open={isMenuOpen ? "true" : "false"}>
       <div className="container header-inner">
         <Link className="logo" href="/#home">
           nickert.dev
         </Link>
+        <button
+          type="button"
+          className="menu-toggle"
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-nav"
+          onClick={() => setIsMenuOpen((v) => !v)}
+        >
+          <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
+          <span className="menu-icon" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
         <div className="header-actions">
-          <nav aria-label="Primary">
+          <nav id="primary-nav" aria-label="Primary">
             <ul className="nav-list">
               {navItems.map((item) => (
                 <li key={item.href}>
@@ -149,6 +184,7 @@ export default function SiteHeader() {
                     href={item.href}
                     data-active={activeId === item.id ? "true" : "false"}
                     aria-current={activeId === item.id ? "page" : undefined}
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
                   </a>
