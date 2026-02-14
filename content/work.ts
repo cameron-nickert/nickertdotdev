@@ -29,84 +29,93 @@ export type WorkItem = {
 
 const workItemsData: WorkItem[] = [
   {
-    slug: "shopify-payments-platform",
-    title: "Shopify Payments Platform",
-    summary: "Money-critical systems that keep global payouts calm and on time.",
+    slug: "payment-methods-rollout-refund-api-ppp",
+    title: "Unified Refund API",
+    summary:
+      "Built foundations and led rollout of a unified Refund API to third‑party payment providers.",
     problem:
-      "Global merchants depend on payout reliability. We hardened core money movement services while keeping performance steady during growth.",
+      "Refund processing was fragmented across legacy code paths and provider‑specific logic, limiting reliability and observability. We needed a single entrypoint with parity and safety to reduce risk and simplify operations.",
     role: "Senior Software Engineer",
-    year: "2023 - Present",
+    year: "2024 - 2025",
     approach: [
-      "Own reliability workstreams across payout orchestration and ledger integrity.",
-      "Partner with risk, finance, and support teams to translate failure modes into engineering priorities.",
-      "Ship guardrails for idempotency, reconciliation, and operational visibility."
+      "Consolidated disparate refund flows behind a unified Payments API entrypoint.",
+      "Established reusable patterns later applicable to captures and voids.",
+      "Shipped observability and safeguards to handle high‑traffic events and retries.",
+      "Led phased rollout to full traffic to de‑risk migration."
     ],
     heroImage: {
-      src: "/images/contact-illustration.png/shopify-payments-platform/hero-01.png",
-      alt: "Payments operations dashboard with payout status, alerts, and system health charts."
+      src: "/images/case-studies/unified-refund.png",
+      alt: "Refunds architecture schematic for unified API."
     },
     impact: [
-      { label: "Payout reliability", value: "99.99%+ on-time payouts", context: "normalized by region" },
-      { label: "Operational load", value: "35% fewer manual escalations", context: "first 2 quarters" },
-      { label: "Recovery time", value: "Minutes instead of hours", context: "for payout retries" }
+      { label: "Reliability", value: "Unified flow with consistent retries", context: "across providers" },
+      { label: "Operational visibility", value: "Improved dashboards + alerts", context: "refund health" },
+      { label: "Migration risk", value: "Reduced via staged rollout", context: "full-traffic launch" }
     ],
-    stack: ["Ruby on Rails", "Kafka", "MySQL", "Docker", "Grafana"],
-    tags: ["Payments", "Reliability", "Platform"],
+    stack: ["Ruby on Rails", "MySQL", "Kafka", "Grafana", "SQL"],
+    tags: ["Payments", "Refunds", "Platform"],
     links: [
-      { label: "Shopify Payments overview", href: "https://www.shopify.com/payments" }
+      { label: "Shopify refunds (docs)", href: "https://help.shopify.com/en/manual/orders/refunds" }
     ]
   },
   {
-    slug: "shop-pay-installments",
-    title: "Shop Pay Installments",
-    summary: "Installment checkout that stays fast, clear, and risk-aware.",
+    slug: "update-payments-api-orchestration-3p-gift-cards",
+    title: "Redesign Payments API for Third-Party Gift Card Support",
+    summary:
+      "Delivered model foundations and orchestration to support asynchronous redeemables (e.g., third‑party gift cards) with multiple charges in a single payment.",
     problem:
-      "Merchants needed higher conversion without adding checkout friction. Installments required clear eligibility, fast decisions, and risk-aware controls.",
-    role: "Software Engineer",
-    year: "2022 - 2023",
+      "Existing orchestration assumed single synchronous charge flows, making it hard to support split‑tenders and asynchronous redeemables.",
+    role: "Senior Software Engineer",
+    year: "2023 - 2024",
     approach: [
-      "Implemented UI + API flows for pre-qualification and transparent repayment terms.",
-      "Tuned back-end decisioning queries to keep checkout latency within target.",
-      "Worked with product to launch incremental rollouts and monitor adoption."
+      "Introduced instruction/state record patterns for multi‑part payments.",
+      "Enabled split‑payment patterns needed for gift cards and stored value.",
+      "Strengthened payment attempts as a source of truth for orchestration.",
+      "Prepared migrations and backfills to safely adopt new models."
     ],
     heroImage: {
-      src: "/images/contact-illustration.png/shop-pay-installments/hero-01.png",
-      alt: "Checkout screen showing installment options and eligibility status."
+      src: "/images/case-studies/giftcards.png",
+      alt: "Payments orchestration diagram showing split tenders."
     },
     impact: [
-      { label: "Checkout latency", value: "<250ms decisioning", context: "p95 target hit" },
-      { label: "Conversion", value: "Lift observed", context: "merchant cohort pilots" },
-      { label: "Rollout safety", value: "Zero regressions", context: "feature flag launches" }
+      { label: "Capability", value: "Asynchronous redeemables supported", context: "3P gift cards" },
+      { label: "Safety", value: "Stable rollout", context: "no regressions in existing flows" },
+      { label: "Extensibility", value: "Reusable patterns", context: "future payment methods" }
     ],
-    stack: ["React", "Ruby", "PostgreSQL", "GraphQL", "LaunchDarkly"],
-    tags: ["Checkout", "Fintech", "Performance"],
-    links: [{ label: "Shop Pay Installments", href: "https://www.shopify.com/shop-pay-installments" }]
+    stack: ["Ruby", "MySQL", "Kafka", "Distributed Systems", "SQL"],
+    tags: ["Payments", "Orchestration", "Redeemables"],
+    links: [
+      { label: "Gift cards (Shopify docs)", href: "https://help.shopify.com/en/manual/online-store/gift-cards" }
+    ]
   },
   {
-    slug: "nerd-nibble-webappetizer",
-    title: "Web Appetizer (Nerd Nibble)",
-    summary: "Serverless ordering for local restaurants with Stripe-powered payments.",
+    slug: "ford-payment-library",
+    title: "Ford Payment Library",
+    summary:
+      "Led an embedded payment library used in secure Ford web payment experiences.",
     problem:
-      "Local restaurants needed a fast, low-fee way to launch online ordering without heavy ops.",
-    role: "Co-Founder",
-    year: "2020 - 2022",
+      "Multiple properties needed consistent, secure payment capabilities without duplicating complex integrations.",
+    role: "Software Engineering Team Lead",
+    year: "2019 - 2021",
     approach: [
-      "Built a serverless ordering pipeline with Stripe payments and automated receipts.",
-      "Designed merchant dashboards for menu, hours, and fulfillment control.",
-      "Delivered integrations for SMS order status and delivery routing."
+      "Created reusable secure payment components for multiple Ford properties.",
+      "Balanced developer ergonomics with secure‑by‑default integration patterns.",
+      "Drove delivery across backend and frontend concerns with clear ownership."
     ],
     heroImage: {
-      src: "/images/contact-illustration.png/nerd-nibble-webappetizer/hero-01.png",
-      alt: "Restaurant ordering platform with menu management dashboard and mobile order tracker."
+      src: "/images/case-studies/ford.png",
+      alt: "Reusable payment components across multiple properties."
     },
     impact: [
-      { label: "Merchant onboarding", value: "<1 day", context: "from signup to launch" },
-      { label: "Order throughput", value: "Thousands of orders", context: "seasonal peaks" },
-      { label: "Operational cost", value: "Minimal infra spend", context: "serverless model" }
+      { label: "Reuse", value: "Shared library across properties", context: "consistent UX + security" },
+      { label: "Time to integrate", value: "Reduced", context: "standardized interfaces" },
+      { label: "Enablement", value: "Reservations and digital purchases", context: "production usage" }
     ],
-    stack: ["AWS Lambda", "TypeScript", "Stripe", "DynamoDB", "Twilio"],
-    tags: ["SaaS", "Serverless", "Founding"],
-    links: [{ label: "Product summary", href: "https://example.com/webappetizer" }]
+    stack: ["Spring Framework", "Spring Boot", "React", "Java", "JavaScript"],
+    tags: ["Payments", "SDK", "Security"],
+    links: [
+      { label: "Ford (company)", href: "https://www.ford.com/" }
+    ]
   }
 ];
 

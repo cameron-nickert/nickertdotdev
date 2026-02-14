@@ -2128,12 +2128,16 @@ button,
   border-radius: calc(var(--radius-large) - 6px);
   overflow: hidden;
   background: var(--color-paper-alt);
+  position: relative;
+  aspect-ratio: 3 / 2;
 }
 
 .work-card-media img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .work-card-header {

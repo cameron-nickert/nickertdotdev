@@ -19,17 +19,17 @@ export default function HomePage() {
     ? profileSummary.contact.linkedin
     : `https://${profileSummary.contact.linkedin}`;
   const workCardArt: Record<string, { src: string; alt: string }> = {
-    "shopify-payments-platform": {
-      src: "/images/scene-04-work/work-card-01.png",
-      alt: "Illustration of a payments platform with dashboards and connected services."
+    "payment-methods-rollout-refund-api-ppp": {
+      src: "/images/case-studies/unified-refund.png",
+      alt: "Illustration of a unified refunds architecture."
     },
-    "shop-pay-installments": {
-      src: "/images/scene-04-work/work-card-02.png",
-      alt: "Illustration of a shopper using split payments with checkout steps."
+    "update-payments-api-orchestration-3p-gift-cards": {
+      src: "/images/case-studies/giftcards.png",
+      alt: "Illustration of split tenders and asynchronous redeemables."
     },
-    "nerd-nibble-webappetizer": {
-      src: "/images/scene-04-work/work-card-03.png",
-      alt: "Illustration of an ordering workflow with delivery and fulfillment cues."
+    "ford-payment-library": {
+      src: "/images/case-studies/ford.png",
+      alt: "Illustration of reusable payment components across apps."
     }
   };
 

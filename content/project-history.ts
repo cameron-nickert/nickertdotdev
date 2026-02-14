@@ -9,33 +9,48 @@ export type ProjectHistoryItem = {
 };
 
 export const projectHistory: ProjectHistoryItem[] = [
+  // {
+  //   slug: "shopify-payments-card-present-gateway-emv-foundation",
+  //   title: "Card-Present Gateway: Single-Message EMV Foundation",
+  //   timeframe: "2026",
+  //   organization: "Shopify",
+  //   summary:
+  //     "Delivered gateway foundations that unblock provider-agnostic, card-present payment processing.",
+  //   details: [
+  //     "Helped define scalable architecture for single-message EMV and future card-present flows.",
+  //     "Unblocked parallel POS, provider, and infrastructure workstreams with foundational APIs.",
+  //     "Supported early end-to-end gateway validation through a mock-provider environment."
+  //   ],
+  //   technologies: ["Payments Platform", "EMV", "POS", "API Design", "Systems Design"]
+  // },
   {
-    slug: "shopify-payments-card-present-gateway-emv-foundation",
-    title: "Card-Present Gateway: Single-Message EMV Foundation",
+    slug: "shopify-payments-card-present-confidential",
+    title: "Confidential Project",
     timeframe: "2026",
     organization: "Shopify",
     summary:
-      "Delivered gateway foundations that unblock provider-agnostic, card-present payment processing.",
+      "Shipping features to the Shopify platform.",
     details: [
-      "Helped define scalable architecture for single-message EMV and future card-present flows.",
-      "Unblocked parallel POS, provider, and infrastructure workstreams with foundational APIs.",
-      "Supported early end-to-end gateway validation through a mock-provider environment."
+      "More details to come.",
     ],
-    technologies: ["Payments Platform", "EMV", "POS", "API Design", "Systems Design"]
+    technologies: ["Payments Platform", "Systems Design", "Ruby on Rails"]
   },
   {
     slug: "payment-methods-rollout-refund-api-ppp",
-    title: "Rollout Refund API to Third-Party Payment Providers (PPP)",
+    title: "Unified Refund API",
     timeframe: "2024 - 2025",
     organization: "Shopify",
     summary:
-      "Led rollout of unified Refund API support to third-party payment providers.",
+      "Built foundations and led rollout of unified Refund API support to third-party payment providers.",
     details: [
-      "Brought PPP refunds into the unified processing flow with parity for retries and error handling.",
+      "Brought third-party refunds into the unified processing flow with parity for retries and error handling.",
       "Shipped operational monitoring and reliability safeguards for high-traffic events.",
-      "Drove rollout to full traffic and reduced migration risk for future payment-method expansions."
+      "Drove rollout to full traffic and reduced migration risk for future payment-method expansions.",
+      "Contributed to a single entrypoint and flow structure for refunds in Payments API.",
+      "Established reusable patterns later applicable to captures and voids.",
+      "Helped create a cleaner path toward consolidation of legacy refund code paths."
     ],
-    technologies: ["Ruby on Rails", "Payments API", "Refunds", "Observability", "Reliability Engineering"]
+    technologies: ["Ruby on Rails", "Systems Design", "Refunds", "Observability", "Incident Response" , "SQL", "Kafka"]
   },
   {
     slug: "payment-methods-optimize-platform-performance-migrations",
@@ -46,38 +61,27 @@ export const projectHistory: ProjectHistoryItem[] = [
       "Restored throughput parity during concurrent payment migrations in critical checkout paths.",
     details: [
       "Worked on performance bottlenecks that caused elevated error rates under migration load.",
-      "Helped recover near-baseline throughput for both 3P and 1P migration tracks.",
+      "Helped recover near-baseline throughput for both third-party and first-party migration tracks.",
       "Improved platform confidence for flash-sale and peak-volume merchant workloads."
     ],
-    technologies: ["Performance Engineering", "Payments Platform", "Load Testing", "Ruby", "SQL"]
+    technologies: ["Performance Engineering", "Observability", "Load Testing", "Ruby", "SQL", "Kafka"]
   },
   {
     slug: "update-payments-api-orchestration-3p-gift-cards",
-    title: "Update Payments API Orchestration for Third-Party Gift Cards",
+    title: "Redesign Payments API for Third-Party Gift Card Support",
     timeframe: "2023 - 2024",
     organization: "Shopify",
     summary:
-      "Expanded Payments API orchestration to support multiple asynchronous charges in one payment.",
+      "Delivered model foundations and expanded orchestration to support asynchronous redeemables (e.g., third-party gift cards) with multiple charges in one payment.",
     details: [
       "Enabled split-payment patterns needed for third-party gift card support.",
       "Helped evolve orchestration so payment attempts became a stronger source of truth.",
-      "Supported broad rollout while preserving stability of existing payment flows."
+      "Supported broad rollout while preserving stability of existing payment flows.",
+      "Helped support gift cards and stored-value style flows with more flexible orchestration.",
+      "Contributed to new instruction/state record patterns for multi-part payments.",
+      "Supported migration and backfill readiness needed by downstream redeemables projects."
     ],
-    technologies: ["Payments API", "Orchestration", "Ruby", "Distributed Systems", "Relational Databases"]
-  },
-  {
-    slug: "payment-methods-refunds-foundation-payments-api",
-    title: "Foundation for Refunds in Payments API",
-    timeframe: "2024",
-    organization: "Shopify",
-    summary:
-      "Built foundational refund-processing patterns for the unified payments stack.",
-    details: [
-      "Contributed to a single entrypoint and flow structure for refunds in Payments API.",
-      "Established reusable patterns later applicable to captures and voids.",
-      "Helped create a cleaner path toward consolidation of legacy refund code paths."
-    ],
-    technologies: ["Payments API", "Refunds", "Ruby", "API Architecture", "Systems Design"]
+    technologies: ["Product", "UX", "Data", "Ruby", "Distributed Systems", "SQL", "Systems Design"]
   },
   {
     slug: "payments-platform-game-day",
@@ -93,31 +97,18 @@ export const projectHistory: ProjectHistoryItem[] = [
     ],
     technologies: ["Game Days", "Incident Management", "Load Testing", "Reliability Engineering", "Observability"]
   },
-  {
-    slug: "payments-lifecycle-enable-3p-redeemables-model-changes",
-    title: "Enable 3P Redeemables on Payments API (Model Foundations)",
-    timeframe: "2023",
-    organization: "Shopify",
-    summary:
-      "Implemented foundational model changes for asynchronous redeemables in Payments API.",
-    details: [
-      "Helped support gift cards and stored-value style flows with more flexible orchestration.",
-      "Contributed to new instruction/state record patterns for multi-part payments.",
-      "Supported migration and backfill readiness needed by downstream redeemables projects."
-    ],
-    technologies: ["Payments API", "Data Modeling", "Ruby", "SQL", "Migrations"]
-  },
+  // merged into update-payments-api-orchestration-3p-gift-cards
   {
     slug: "spi-prequalify-on-product-pages",
     title: "Prequalify for Installments on Product Pages",
     timeframe: "2022 - 2023",
     organization: "Shopify",
     summary:
-      "Worked on moving installment prequalification earlier in the buyer journey on PDP surfaces.",
+      "Prototyped moving installment prequalification earlier in the buyer journey on PDP surfaces.",
     details: [
       "Supported up-funnel installment eligibility UX exploration before checkout.",
       "Contributed to product/technical framing aimed at improved conversion outcomes.",
-      "Helped inform instrumentation and experimentation for installment adoption."
+      "Built a working prototype and experimentation plan; initiative did not proceed to launch."
     ],
     technologies: ["Shop Pay Installments", "Checkout", "Product Experimentation", "UX", "Analytics"]
   },
@@ -127,11 +118,11 @@ export const projectHistory: ProjectHistoryItem[] = [
     timeframe: "2022 - 2023",
     organization: "Shopify",
     summary:
-      "Supported work to migrate SPI buyer transaction email ownership from partner systems to Shop.",
+      "Drove systems design, project scoping, and prototyping to migrate SPI buyer transaction emails; priorities shifted before rollout.",
     details: [
-      "Helped advance ownership and control of installment buyer communication surfaces.",
-      "Aligned experience goals around clearer routing to the right buyer app surfaces.",
-      "Contributed to planning and technical exploration for transaction-email migration."
+      "Completed systems design and scoping for ownership shift from partner systems to Shop.",
+      "Prototyped routing and experience alignment across buyer app surfaces.",
+      "Effort was deprioritized prior to production rollout."
     ],
     technologies: ["Shop Pay Installments", "Messaging", "Shop", "Product Integration", "Email Systems"]
   },
