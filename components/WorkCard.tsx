@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { WorkItem } from "@/content/work";
+import CaseArtwork from "@/components/CaseArtwork";
 
 type WorkCardProps = {
   item: WorkItem;
@@ -7,7 +8,7 @@ type WorkCardProps = {
   artAlt?: string;
 };
 
-export default function WorkCard({ item, artSrc, artAlt }: WorkCardProps) {
+export default function WorkCard({ item, artSrc }: WorkCardProps) {
   return (
     <article
       className="work-card reactive-shell comic-panel angled-panel"
@@ -17,10 +18,11 @@ export default function WorkCard({ item, artSrc, artAlt }: WorkCardProps) {
       <span className="reactive-overlay" aria-hidden="true" data-reactive-overlay />
       <span className="reactive-ring" aria-hidden="true" data-reactive-ring />
       {artSrc ? (
-        <div className="work-card-media impact-frame speed-lines" data-impact="true">
-          <img src={artSrc} alt={artAlt ?? ""} loading="lazy" />
+        <div className="work-card-media">
+          <CaseArtwork slug={item.slug} />
         </div>
       ) : null}
+      <div className="work-card-copy">
       <div className="work-card-header">
         <p className="eyebrow">{item.role}</p>
         <span className="dot" aria-hidden="true" />
@@ -52,6 +54,7 @@ export default function WorkCard({ item, artSrc, artAlt }: WorkCardProps) {
             THUMP
           </span>
         </Link>
+      </div>
       </div>
     </article>
   );

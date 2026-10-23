@@ -9,31 +9,20 @@ export type ProjectHistoryItem = {
 };
 
 export const projectHistory: ProjectHistoryItem[] = [
-  // {
-  //   slug: "shopify-payments-card-present-gateway-emv-foundation",
-  //   title: "Card-Present Gateway: Single-Message EMV Foundation",
-  //   timeframe: "2026",
-  //   organization: "Shopify",
-  //   summary:
-  //     "Delivered gateway foundations that unblock provider-agnostic, card-present payment processing.",
-  //   details: [
-  //     "Helped define scalable architecture for single-message EMV and future card-present flows.",
-  //     "Unblocked parallel POS, provider, and infrastructure workstreams with foundational APIs.",
-  //     "Supported early end-to-end gateway validation through a mock-provider environment."
-  //   ],
-  //   technologies: ["Payments Platform", "EMV", "POS", "API Design", "Systems Design"]
-  // },
   {
-    slug: "shopify-payments-card-present-confidential",
-    title: "Confidential Project",
+    slug: "shopify-payments-card-present-gateway",
+    title: "Shopify Payments: Card-Present Gateway",
     timeframe: "2026",
     organization: "Shopify",
     summary:
-      "Shipping features to the Shopify platform.",
+      "Helped build and productionize Shopify's own card-present payment gateway, creating a foundation for provider-agnostic in-person payments.",
     details: [
-      "More details to come.",
+      "Separated payment creation, continuation, and result mapping into clearer orchestration workflows.",
+      "Refactored provider integrations into dedicated request clients and simplified card-present payload construction and result handling.",
+      "Added provider-routing controls and rollout safeguards, with operational guidance for incident response.",
+      "Contributed to feature parity and production readiness for the initial merchant rollout."
     ],
-    technologies: ["Payments Platform", "Systems Design", "Ruby on Rails"]
+    technologies: ["Ruby on Rails", "Payments Platform", "EMV", "POS", "API Design", "Systems Design"]
   },
   {
     slug: "payment-methods-rollout-refund-api-ppp",

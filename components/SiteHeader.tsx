@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { id: "home", href: "/#home", label: "Home" },
+  { id: "resume", href: "/#resume", label: "Resume" },
   { id: "who-i-am", href: "/#who-i-am", label: "Who I Am" },
   { id: "story", href: "/#story", label: "Story" },
   { id: "work", href: "/#work", label: "Work" },
-  { id: "resume", href: "/#resume", label: "Resume" },
   { id: "contact", href: "/#contact", label: "Contact" }
 ];
 
@@ -158,22 +159,9 @@ export default function SiteHeader() {
     <header className="site-header" data-menu-open={isMenuOpen ? "true" : "false"}>
       <div className="container header-inner">
         <Link className="logo" href="/#home">
-          nickert.dev
+          <span className="logo-mark" aria-hidden="true">CN</span>
+          <span className="logo-wordmark">NICKERT<span>.DEV</span></span>
         </Link>
-        <button
-          type="button"
-          className="menu-toggle"
-          aria-expanded={isMenuOpen}
-          aria-controls="primary-nav"
-          onClick={() => setIsMenuOpen((v) => !v)}
-        >
-          <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
-          <span className="menu-icon" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
         <div className="header-actions">
           <nav id="primary-nav" aria-label="Primary">
             <ul className="nav-list">
@@ -192,6 +180,23 @@ export default function SiteHeader() {
               ))}
             </ul>
           </nav>
+        </div>
+        <div className="header-controls">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-expanded={isMenuOpen}
+            aria-controls="primary-nav"
+            onClick={() => setIsMenuOpen((v) => !v)}
+          >
+            <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
+            <span className="menu-icon" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
         </div>
       </div>
     </header>

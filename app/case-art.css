@@ -1,0 +1,17 @@
+.work-card-copy { display: grid; gap: 18px; align-content: center; min-width: 0; }
+.case-art { --case-accent: #b94e36; --case-surface: #f0cfad; position: relative; display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 3vw, 48px); min-height: 340px; height: 100%; color: #142b30; background: var(--case-surface); overflow: hidden; isolation: isolate; }
+.case-art-giftcard { --case-accent: #26776d; --case-surface: #c7d8be; }
+.case-art-library { --case-accent: #446985; --case-surface: #c0d3de; }
+.case-art::before { content: ""; position: absolute; width: 350px; height: 350px; border: 1px solid #142b3025; border-radius: 50%; top: -170px; right: -160px; box-shadow: 0 0 0 35px #142b3008, 0 0 0 70px #142b3005; pointer-events: none; z-index: -1; }
+.case-art-number { position: absolute; top: 12px; right: 24px; font-family: var(--font-display); font-size: 100px; line-height: 1; opacity: .09; }
+.case-art-kicker { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.case-art-flow { display: flex; align-items: center; justify-content: center; margin: 30px 0; min-height: 120px; }
+.case-node { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; font-size: 11px; font-weight: 600; }
+.case-node-core { border: 2px solid #142b30; background: #fff9e9; box-shadow: 6px 6px 0 var(--case-accent); border-radius: 5px; width: 132px; min-height: 116px; padding: 15px 5px; flex-shrink: 0; transform: rotate(-3deg); }
+.case-node-core svg { width: 54px; height: 54px; }
+.case-node i { display: block; width: 23px; height: 23px; border: 2px solid currentColor; border-radius: 50%; background: #fff9e9; }
+.case-connector { height: 2px; background: #142b30; flex: 1; min-width: 10px; max-width: 65px; margin: 0 10px; position: relative; }
+.case-connector::after { content: ""; width: 7px; height: 7px; border-top: 2px solid #142b30; border-right: 2px solid #142b30; position: absolute; right: 0; top: -3px; transform: rotate(45deg); }
+.case-art-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 3vw, 40px); line-height: 1.08; text-transform: uppercase; max-width: 15ch; }
+.case-art-caption { font-size: 11px; margin-top: 10px; }
+@media (max-width: 767px) { .case-art { min-height: 300px; padding: 24px; } .case-node-core { width: 112px; min-height: 100px; } .case-node { font-size: 10px; } .case-connector { margin-inline: 7px; } }

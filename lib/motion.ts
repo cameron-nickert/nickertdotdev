@@ -321,8 +321,8 @@ export const createSceneMotion = ({ root, settings }: SceneMotionOptions) => {
 
   let revealAnimations: Animation[] = [];
   let floatAnimations: Animation[] = [];
-  let sceneAnimations: Animation[] = [];
-  let surpriseAnimations: Animation[] = [];
+  const sceneAnimations: Animation[] = [];
+  const surpriseAnimations: Animation[] = [];
   let revealPlayed = false;
   let surprisePlayed = false;
 

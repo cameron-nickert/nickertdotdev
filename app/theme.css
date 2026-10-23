@@ -1,0 +1,202 @@
+/* One ink-and-paper system across the cover, archive, and reading pages. */
+.header-controls { display: flex; align-items: center; gap: 12px; }
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 34px; padding: 5px 10px; border: 1px solid #142b30;
+  border-radius: 2px; background: #f4bd79; color: #142b30;
+  box-shadow: 3px 3px 0 #142b30; cursor: pointer;
+  font: 700 10px var(--font-body); letter-spacing: .1em; text-transform: uppercase;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.theme-toggle:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #142b30; }
+.theme-toggle:focus-visible { outline: 3px solid #ef8c65; outline-offset: 3px; }
+.theme-toggle-icon { font-size: 18px; line-height: 1; }
+.theme-toggle-compact { min-height: 27px; padding: 3px 7px; background: #f4bd79; }
+
+/* Light mode uses pale chapter surfaces throughout the entire issue. */
+html[data-theme="light"] .immersive-comic { background: #f4e9d6; }
+html[data-theme="light"] .immersive-comic > .chapter-card,
+html[data-theme="light"] .work-all-page .chapter-card,
+html[data-theme="light"] .work-detail-page .chapter-card {
+  background: #eddfc6; color: #142b30; border-color: #142b30;
+}
+html[data-theme="light"] .immersive-comic > .chapter-card::before { background: repeating-conic-gradient(from 30deg at 90% 60%, transparent 0deg 9deg, #142b3017 9.1deg 9.4deg, transparent 9.5deg 18deg); }
+html[data-theme="light"] .immersive-comic .chapter-label,
+html[data-theme="light"] .work-all-page .chapter-label,
+html[data-theme="light"] .work-detail-page .chapter-label { color: #9a442c; }
+html[data-theme="light"] .immersive-comic .chapter-title { text-shadow: 3px 3px 0 #fff9eb; }
+html[data-theme="light"] .work-all-page .work-all-year-divider .chapter-title { color: #142b30; text-shadow: 3px 3px 0 #fff9eb; }
+html[data-theme="light"] .work-all-year-count { color: #9a442c; }
+html[data-theme="light"] .immersive-comic #who-i-am { background: #e3e9de; color: #142b30; }
+html[data-theme="light"] .scroll-story-heading .eyebrow,
+html[data-theme="light"] .scroll-story-intro span,
+html[data-theme="light"] .scroll-step-label,
+html[data-theme="light"] .scroll-story-meter > span { color: #92432d; }
+html[data-theme="light"] .scroll-story-intro,
+html[data-theme="light"] .scroll-story-step p { color: #344b49; }
+html[data-theme="light"] .scroll-story-stage { background: #e3e9de; }
+html[data-theme="light"] .scroll-story-step { border-left-color: #7e9189; border-bottom-color: #142b3026; }
+html[data-theme="light"] .scroll-story-step[data-active="true"] { background: #fff9eb; border-left-color: #a34b30; }
+html[data-theme="light"] .scroll-story-step li { color: #142b30; border-color: #84968b; }
+html[data-theme="light"] .scroll-story-meter i { background: #a9b5a6; }
+html[data-theme="light"] .scroll-story-meter i[data-active="true"] { background: #a34b30; }
+html[data-theme="light"] .immersive-comic .timeline-item:last-child { background: #fff9eb; color: #142b30; }
+html[data-theme="light"] .immersive-comic .timeline-item:last-child .timeline-year { color: #9d4227; }
+html[data-theme="light"] .immersive-comic .timeline-item:last-child .timeline-detail { color: #344b49; }
+html[data-theme="light"] .comic-reader { background: #fff6e3; color: #142b30; border-color: #142b30; }
+html[data-theme="light"] .site-footer { background: #f1e4cd; color: #142b30; border-top: 2px solid #142b30; }
+html[data-theme="light"] .site-footer .footer-kicker { color: #99422b; }
+html[data-theme="light"] .site-footer .footer-links a { color: #142b30; border-color: #142b3040; }
+html[data-theme="light"] .site-footer .footer-links a:hover { color: #99422b; }
+html[data-theme="light"] .site-footer .footer-meta { color: #4c6661; border-color: #142b303b; }
+
+/* Archive dividers read like issue opens, then briefly echo the site's SFX bursts. */
+.work-all-year-block { scroll-margin-top: 95px; }
+.work-all-page .work-all-year-divider {
+  display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+  gap: 24px; padding-inline: max(48px, calc((100% - 1200px) / 2));
+  overflow: visible; isolation: isolate;
+}
+.work-all-year-heading { position: relative; z-index: 2; }
+.work-all-page .work-all-year-divider .chapter-label { color: #f4bd79; font-size: 10px; }
+.work-all-page .work-all-year-divider .chapter-title {
+  position: relative; width: fit-content; margin: 3px 0 0;
+  font-size: clamp(46px, 7vw, 88px); line-height: .9; color: #fff3d5;
+  text-shadow: 4px 4px 0 #09191c;
+}
+.work-all-year-count {
+  position: relative; z-index: 2; color: #f4bd79; font-size: 11px;
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+}
+.work-all-page .work-all-year-divider .chapter-title::before {
+  content: ""; position: absolute; z-index: -1; inset: -34px -58px;
+  background: #ee9b58; opacity: 0; transform: scale(.3) rotate(-24deg);
+  clip-path: polygon(50% 0,57% 26%,78% 7%,75% 32%,100% 26%,81% 48%,100% 62%,74% 65%,82% 94%,58% 76%,48% 100%,40% 75%,16% 94%,24% 67%,0 63%,20% 48%,0 29%,27% 33%,23% 7%,42% 27%);
+}
+.work-all-year-divider[data-burst="true"] .chapter-title::before {
+  animation: archive-year-burst 900ms cubic-bezier(.14,.8,.16,1) both;
+}
+.work-all-year-divider[data-burst="true"] .chapter-title {
+  animation: archive-year-title 720ms cubic-bezier(.18,.8,.25,1) both;
+}
+@keyframes archive-year-burst {
+  0% { opacity: 0; transform: scale(.25) rotate(-24deg); }
+  35% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+  65% { opacity: .85; transform: scale(1) rotate(0); }
+  100% { opacity: 0; transform: scale(1.32) rotate(12deg); }
+}
+@keyframes archive-year-title {
+  0% { transform: translateX(-20px) rotate(-5deg); }
+  50% { transform: translateX(4px) rotate(2deg); }
+  100% { transform: none; }
+}
+.work-all-page .project-history-tile {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.work-all-page .project-history-tile .section-title { margin-bottom: 12px; }
+.work-all-page .project-history-tile > .body-copy { margin: 0 0 12px; }
+.work-all-page .project-history-tile .resume-list { gap: 9px; margin-bottom: 18px; }
+.work-all-page .project-history-tile .resume-list li { margin: 0; line-height: 1.55; }
+.work-all-page .project-history-tile .resume-list li::before { content: "↳ "; color: #a85436; font-weight: 700; }
+.work-all-page .project-history-tile:hover {
+  transform: translateY(-4px) rotate(-.4deg); box-shadow: 9px 10px 0 #142b30;
+}
+.work-all-page .work-all-year-jump { border-radius: 2px; background: #fff9eb; }
+.work-all-page .work-all-year-jump-select { border-radius: 2px; }
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --color-text: #f5eddc;
+  --color-muted: #c9d2c8;
+  --color-panel: #22383b;
+  --color-paper: #15282d;
+  --color-paper-alt: #1b3337;
+  --color-accent: #b9573e;
+  --color-accent-dark: #963d2b;
+  --color-border: #b8c7bc55;
+}
+html[data-theme="dark"] body {
+  background: #14272c; color: #f5eddc;
+}
+html[data-theme="dark"] .site-header { background: #14272cf5; border-color: #8d9f99; }
+html[data-theme="dark"] .logo { color: #f5eddc; }
+html[data-theme="dark"] .logo-mark { border-color: #e8d9bd; box-shadow: 3px 3px 0 #e8d9bd; }
+html[data-theme="dark"] .logo-wordmark span { color: #f4bd79; }
+html[data-theme="dark"] .nav-link { color: #ced9d0; }
+html[data-theme="dark"] .nav-link:hover,
+html[data-theme="dark"] .nav-link[data-active="true"] { color: #f4bd79; }
+html[data-theme="dark"] .theme-toggle { background: #263f42; color: #f5eddc; border-color: #c9d7ca; box-shadow: 3px 3px 0 #0b181c; }
+html[data-theme="dark"] .theme-toggle:hover { background: #325155; box-shadow: 5px 5px 0 #0b181c; }
+html[data-theme="dark"] .menu-toggle { border-color: #d9dfcf; background: #263f42; box-shadow: 3px 3px 0 #0b181c; }
+html[data-theme="dark"] .menu-icon span { background: #f5eddc; }
+html[data-theme="dark"] .site-footer { background: #0d1e23; border-top: 2px solid #708780; }
+html[data-theme="dark"] .work-all-page,
+html[data-theme="dark"] .work-detail-page { background: #192e32; color: #f5eddc; }
+html[data-theme="dark"] .work-all-page .panel,
+html[data-theme="dark"] .work-detail-page .panel { background: #263d40; color: #f5eddc; border-color: #a6b6a9; box-shadow: 5px 5px 0 #0c1b20; }
+html[data-theme="dark"] .work-all-page .project-history-tile:hover { box-shadow: 9px 10px 0 #0c1b20; }
+html[data-theme="dark"] .work-all-page .project-history-tile .resume-list li::before { color: #f4bd79; }
+html[data-theme="dark"] .work-all-page .chapter-card,
+html[data-theme="dark"] .work-detail-page .chapter-card { background: #102328; }
+html[data-theme="dark"] .work-all-page .work-all-year-jump,
+html[data-theme="dark"] .work-all-page .work-all-year-jump-select { background: #263d40; color: #f5eddc; border-color: #bbc9bc; }
+html[data-theme="dark"] .tag { background: #355056; color: #f5eddc; border-color: #96aaa0; }
+html[data-theme="dark"] .button.button-ghost { background: #315055; color: #f5eddc; }
+
+html[data-theme="dark"] .immersive-comic { --comic-black: #0e2025; --comic-cream: #f5eddc; background: #0e2025; }
+html[data-theme="dark"] .immersive-comic .hero { background: #263d42; }
+html[data-theme="dark"] .immersive-comic .hero-panel-bg::after { background: linear-gradient(90deg, #15292bbb, #15292b40 70%); }
+html[data-theme="dark"] .immersive-comic #who-i-am { background: #13282c; }
+html[data-theme="dark"] .immersive-comic #story { background-color: #1d3337; }
+html[data-theme="dark"] .immersive-comic #work { background-color: #22383b; }
+html[data-theme="dark"] .immersive-comic #resume { background-color: #192e32; }
+html[data-theme="dark"] .immersive-comic #contact { background-color: #22383b; }
+html[data-theme="dark"] .immersive-comic .section:not(.hero) { background-image: radial-gradient(#e2e9dc12 .7px, transparent .7px); }
+html[data-theme="dark"] .immersive-comic .panel,
+html[data-theme="dark"] .immersive-comic .timeline-item,
+html[data-theme="dark"] .immersive-comic .work-card,
+html[data-theme="dark"] .immersive-comic .contact-form { background: #2a4144; color: #f5eddc; }
+html[data-theme="dark"] .immersive-comic .panel-story,
+html[data-theme="dark"] .immersive-comic .panel-work-grid,
+html[data-theme="dark"] .immersive-comic .panel-resume-intro,
+html[data-theme="dark"] .immersive-comic .panel-contact-intro { background: transparent; }
+html[data-theme="dark"] .origin-scroll .scroll-story-stage { background: #1d3337; }
+html[data-theme="dark"] .origin-intro,
+html[data-theme="dark"] .origin-scroll .scroll-story-step p,
+html[data-theme="dark"] .contact-note-heading > p:last-child,
+html[data-theme="dark"] .contact-note-footer p { color: #cedad0; }
+html[data-theme="dark"] .origin-heading .eyebrow,
+html[data-theme="dark"] .origin-intro span,
+html[data-theme="dark"] .origin-scroll .scroll-step-label,
+html[data-theme="dark"] .origin-scroll .scroll-story-meter > span { color: #f4bd79; }
+html[data-theme="dark"] .origin-scroll .scroll-story-step { border-color: #bac9ba33; }
+html[data-theme="dark"] .origin-scroll .scroll-story-step[data-active="true"] { background: #355055; border-left-color: #f4bd79; }
+html[data-theme="dark"] .origin-scroll .scroll-story-step h3 { color: #f5eddc; }
+html[data-theme="dark"] .origin-scroll .scroll-story-meter i { background: #81978e70; }
+html[data-theme="dark"] .origin-scroll .scroll-story-meter i[data-active="true"] { background: #f4bd79; }
+html[data-theme="dark"] .personal-footnotes,
+html[data-theme="dark"] .immersive-comic .resume-list li { border-color: #e5eadd33; }
+html[data-theme="dark"] .immersive-comic .timeline-year { color: #f4bd79; }
+html[data-theme="dark"] .immersive-comic .timeline-item:last-child { background: #142b30; }
+html[data-theme="dark"] .immersive-comic .tag { background: #395459; }
+html[data-theme="dark"] .immersive-comic .form-field { color: #f5eddc; }
+html[data-theme="dark"] .immersive-comic .form-field input,
+html[data-theme="dark"] .immersive-comic .form-field textarea { background: #172d31; color: #f5eddc; border-color: #9daf9f; }
+html[data-theme="dark"] .immersive-comic .form-field input::placeholder,
+html[data-theme="dark"] .immersive-comic .form-field textarea::placeholder { color: #aebfb4; }
+html[data-theme="dark"] .immersive-comic .contact-note .form-field { color: #f5eddc; }
+html[data-theme="dark"] .immersive-comic .resume-issue-bottom { background: #e9d9b8; color: #142b30; }
+html[data-theme="dark"] .cover-caption { background: #142b30; color: #fff3d5; border-color: #f4bd79; box-shadow: 5px 5px 0 #f4bd79; }
+
+@media (max-width: 767px) {
+  .header-actions { order: 3; }
+  .header-controls { order: 2; }
+  .theme-toggle-label { display: none; }
+  .theme-toggle { width: 34px; padding: 5px; }
+  .work-all-page .work-all-year-divider { padding-inline: 20px; }
+  .work-all-year-count { max-width: 9ch; text-align: right; font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-all-year-divider .chapter-title::before { animation: none !important; }
+  .work-all-year-divider .chapter-title { animation: none !important; }
+}

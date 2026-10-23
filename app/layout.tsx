@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bangers, Rubik } from "next/font/google";
 import "./globals.css";
+import "./reading-room.css";
+import "./theme.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 
@@ -48,7 +50,12 @@ export default function RootLayout({
       data-density="comfortable"
       data-intensity="tier-2"
       data-wacky="normal"
+      data-theme="dark"
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('nickert-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}` }} />
+      </head>
       <body>
         <a className="skip-link" href="#main-content">
           Skip to main content

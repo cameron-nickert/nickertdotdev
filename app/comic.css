@@ -1,0 +1,295 @@
+.immersive-comic {
+  --comic-black: #141c20;
+  --comic-cream: #fff3d5;
+  --comic-orange: #ff6340;
+  background: var(--comic-black);
+  padding-bottom: 50px;
+}
+
+.immersive-comic .section { margin: 0; padding: clamp(32px, 4vw, 54px) 0; background: var(--comic-cream); }
+.immersive-comic .section::before { display: none; }
+.immersive-comic .container { width: min(1200px, calc(100% - 96px)); }
+.immersive-comic .panel { border-radius: 2px; box-shadow: 6px 6px 0 var(--comic-black); background: #fff9eb; padding: clamp(24px, 3vw, 40px); }
+.immersive-comic .scene-panel-bg { filter: saturate(1.1); opacity: 1; border: 0; }
+.immersive-comic .section-title { font-size: clamp(2.4rem, 4.3vw, 3.8rem); line-height: 1.06; margin: 12px 0 24px; }
+
+/* The opening spread: illustration, oversized lettering, and separate depth planes. */
+.immersive-comic .hero { min-height: 0; padding: 28px 0 20px; overflow: hidden; background: #ffb875; }
+.immersive-comic .hero .scene-layers { inset: -40px; }
+.immersive-comic .hero-panel-bg { background-position: center bottom; transform: translate3d(calc(var(--pointer-x, 0px) * -0.6), var(--cover-shift, 0px), 0) scale(1.04); }
+.immersive-comic .hero-panel-bg::after { background: linear-gradient(90deg, #ffe8b9bb, transparent 70%); opacity: 1; }
+.immersive-comic .hero-comic { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; grid-template-areas: none; gap: 0; align-items: center; min-height: 0; column-gap: 35px; }
+.cover-copy { position: relative; z-index: 3; padding: 0 0 16px 2%; transform: translate3d(calc(var(--pointer-x, 0px) * -0.3), calc(var(--pointer-y, 0px) * -0.3), 0); }
+.cover-edition { display: inline-block; background: var(--comic-black); color: var(--comic-cream); padding: 8px 15px; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; transform: rotate(-2deg); }
+.cover-copy h1 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(5rem, 10.3vw, 9rem); font-weight: 400; line-height: 0.85; letter-spacing: -0.025em; margin: 25px 0; color: var(--comic-cream); -webkit-text-stroke: 2px var(--comic-black); text-shadow: 5px 6px 0 var(--comic-black); transform: rotate(-3deg); }
+.cover-copy h1 > span { display: block; }
+.cover-copy h1 > span:nth-child(2) { color: var(--comic-orange); margin-left: 0.12em; }
+.cover-period { color: var(--comic-cream); }
+.cover-deck { margin: 25px 0 12px; font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.1; }
+.cover-description { max-width: 310px; font-weight: 500; font-size: 15px; }
+.cover-start { display: inline-flex; align-items: center; gap: 30px; background: var(--comic-black); color: var(--comic-cream); text-decoration: none; text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em; padding: 15px 22px; margin-top: 15px; border: 2px solid var(--comic-black); box-shadow: 5px 5px 0 var(--comic-orange); transition: transform 180ms, box-shadow 180ms; }
+.cover-start:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--comic-orange); }
+.cover-start span { font-size: 25px; line-height: 1; }
+.immersive-comic .hero-portrait { grid-area: auto; position: relative; align-self: center; padding: 10px; transform: translate3d(var(--pointer-x, 0px), var(--pointer-y, 0px), 0) rotate(4deg); }
+.immersive-comic .hero-portrait .hero-media { min-height: 0; height: min(62svh, 565px); aspect-ratio: auto; border: 5px solid var(--comic-black); box-shadow: 15px 16px 0 var(--comic-black); overflow: hidden; border-radius: 0; background: var(--comic-cream); }
+.immersive-comic .hero-media-image { object-position: center 27%; filter: saturate(0.9) contrast(1.07); transform: scale(1.04); }
+.cover-stamp { position: absolute; z-index: 4; right: -18px; top: -26px; display: grid; place-content: center; width: 140px; height: 140px; background: #ffd348; color: var(--comic-black); font-family: var(--font-display); font-size: 31px; text-align: center; line-height: 0.95; transform: rotate(12deg); clip-path: polygon(50% 0,60% 15%,78% 6%,80% 25%,100% 28%,88% 45%,100% 60%,81% 65%,80% 88%,61% 82%,50% 100%,40% 83%,20% 93%,20% 73%,0 68%,12% 51%,0 35%,19% 30%,20% 10%,40% 17%); }
+.cover-caption { position: absolute; bottom: 4px; left: -22px; right: 5px; z-index: 4; padding: 12px 20px; background: #ffd26d; color: #142b30; border: 3px solid var(--comic-black); font-family: var(--font-display); font-size: clamp(18px, 2vw, 28px); line-height: 1.15; transform: rotate(-7deg); box-shadow: 5px 5px 0 var(--comic-black); }
+.cover-footer { grid-column: 1 / -1; display: flex; justify-content: space-between; border-top: 2px solid var(--comic-black); padding-top: 14px; margin-top: 30px; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; }
+
+/* Chapter breaks are full-width splash panels, not labels between boxes. */
+.immersive-comic > .chapter-card { margin: 0; min-height: 110px; padding: 22px max(48px, calc((100% - 1200px) / 2)); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; transform: none; color: var(--comic-cream); background: var(--comic-black); border-block: 3px solid var(--comic-black); isolation: isolate; }
+.immersive-comic > .chapter-card::before { background: repeating-conic-gradient(from 30deg at 90% 60%, transparent 0deg 9deg, #fff3d514 9.1deg 9.4deg, transparent 9.5deg 18deg); opacity: 1; animation: none; transform: none; }
+.immersive-comic > .chapter-card::after { content: ""; position: absolute; right: 0; left: auto; top: 0; bottom: 0; width: 38%; background-size: cover; background-position: right center; opacity: 0.38; z-index: -1; mask-image: linear-gradient(90deg, transparent, black 45%); }
+.immersive-comic > .chapter-who::after { background-image: url('/assets/scene-02-who-i-am/activity-hiking.png'); }
+.immersive-comic > .chapter-story::after { background-image: url('/images/story-origin-v2.webp'); }
+.immersive-comic > .chapter-work::after { background: radial-gradient(circle at 70% 50%, #d9a65c50, transparent 65%); }
+.immersive-comic > .chapter-resume::after { background: repeating-linear-gradient(120deg, transparent 0 45px, #f5e5c812 46px 48px, transparent 49px 95px); }
+.immersive-comic > .chapter-contact::after { background-image: url('/images/story-origin-v2.webp'); background-position: right center; }
+.immersive-comic .chapter-label { color: var(--comic-orange); font-size: 11px; letter-spacing: 0.3em; }
+.immersive-comic .chapter-title { font-size: clamp(2rem, 3.5vw, 3.1rem); line-height: 1; max-width: 18ch; margin-top: 8px; text-shadow: 4px 4px 0 #000; }
+
+/* A continuous story: the illustration follows the text in normal page scroll. */
+.immersive-comic #who-i-am { padding: 36px 0 40px; background: #172c30; color: var(--comic-cream); }
+.scroll-story-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.scroll-story-heading .eyebrow { color: #f0bf7c; }
+.immersive-comic .scroll-story-heading .section-title { margin-bottom: 0; font-size: clamp(32px, 3.7vw, 48px); }
+.scroll-story-intro { font-size: 13px; line-height: 1.8; color: #e2e7db; margin: 0 0 4px; }
+.scroll-story-intro span { color: #ffd78b; font-weight: 600; }
+.scroll-story { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: start; position: relative; }
+.scroll-story-stage { position: sticky; top: 92px; min-width: 0; z-index: 5; background: #172c30; }
+.scroll-story-frames { position: relative; height: clamp(300px, 54svh, 510px); border: 3px solid #0b1a20; box-shadow: 6px 6px 0 #0b1a20; overflow: hidden; isolation: isolate; }
+.scroll-story-frame { position: absolute; inset: 0; opacity: 0; transform: scale(1.04); transition: opacity 380ms ease, transform 650ms cubic-bezier(.2,.7,.2,1); }
+.scroll-story-frame[data-active="true"] { opacity: 1; transform: scale(1); z-index: 1; }
+.scroll-story-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.scroll-story-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, #06181cde, transparent 40%); pointer-events: none; }
+.scroll-story-cue { position: absolute; top: 16px; left: 16px; max-width: calc(100% - 32px); margin: 0; z-index: 2; padding: 8px 12px; font-size: 12px; font-weight: 500; font-style: italic; background: #fff3d5; color: #142b30; border: 2px solid #142b30; box-shadow: 3px 3px 0 #142b30; }
+.scroll-story-caption { position: absolute; bottom: 20px; left: 22px; right: 22px; z-index: 3; display: flex; align-items: baseline; gap: 14px; }
+.scroll-story-caption > span { font-size: 11px; letter-spacing: .1em; color: #ffd78b; }
+.scroll-story-caption strong { font-family: var(--font-display); font-size: 34px; font-weight: 400; line-height: 1; text-transform: uppercase; }
+.scroll-story-meter { padding: 17px 0 8px; }
+.scroll-story-meter > span { display: flex; justify-content: space-between; align-items: center; color: #ffd78b; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+.scroll-story-meter b { font-size: 20px; line-height: 1; }
+.scroll-story-meter > div { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; }
+.scroll-story-meter i { height: 3px; background: #506264; transition: background 200ms; }
+.scroll-story-meter i[data-active="true"] { background: #ffd78b; }
+.scroll-story-copy { min-width: 0; padding: 0; }
+.scroll-story-step { padding: 25px 22px; min-height: 174px; border-left: 2px solid #526164; border-bottom: 1px solid #ffffff15; transition: background 250ms, border-color 250ms; }
+.scroll-story-step[data-active="true"] { border-left-color: #ffc36e; background: #ffffff07; }
+.scroll-step-label { color: #e1b885; text-transform: uppercase; font-size: 10px; letter-spacing: .14em; font-weight: 600; }
+.scroll-story-step h3 { font-family: var(--font-display); font-size: clamp(26px, 2.6vw, 35px); font-weight: 400; line-height: 1.08; text-transform: uppercase; margin: 9px 0 12px; }
+.scroll-story-step p { font-size: 14px; line-height: 1.7; color: #dce4dd; margin: 0; max-width: 40ch; }
+.scroll-story-step ul { list-style: none; margin: 15px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.scroll-story-step li { border: 1px solid #637577; padding: 4px 8px; color: #fff3d5; font-size: 10px; }
+/* Clear paper gutters separate narrative from illustration. */
+.immersive-comic .section:not(.hero) > .scene-layers,
+.immersive-comic .section::after,
+.immersive-comic .panel::before,
+.immersive-comic .comic-panel::before,
+.immersive-comic .speed-lines::before,
+.immersive-comic .reactive-overlay,
+.immersive-comic .reactive-ring { display: none; }
+.immersive-comic .section:not(.hero) { background-image: radial-gradient(#142b300d .7px, transparent .7px); background-size: 7px 7px; }
+.immersive-comic .body-copy { font-size: 15px; line-height: 1.8; max-width: 62ch; }
+.immersive-comic .button { border-radius: 2px; min-height: 48px; padding: 12px 22px; }
+.immersive-comic .tag { border-radius: 3px; background: #fff9e9; font-size: 10px; padding: 5px 9px; }
+.immersive-comic .tag-list { gap: 8px; }
+.immersive-comic .angled-panel { transform: none; }
+.immersive-comic #story { background-color: #f5ead5; }
+.immersive-comic .story-comic { display: block; }
+.origin-heading .eyebrow { color: #8c422e; }
+.origin-intro { margin: 0 0 4px; font-size: 14px; line-height: 1.8; color: #354c4b; }
+.origin-intro span { display: inline-block; margin-top: 8px; font-size: 12px; color: #8c422e; font-weight: 600; }
+.origin-scroll { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+.origin-scroll .scroll-story-stage { grid-column: 2; grid-row: 1; background: #f5ead5; color: #fff3d5; }
+.origin-scroll .scroll-story-copy { grid-column: 1; grid-row: 1; }
+.origin-scroll .scroll-story-step { min-height: 230px; padding: 28px 24px; border-left-color: #142b3026; border-bottom-color: #142b301a; }
+.origin-scroll .scroll-story-step[data-active="true"] { background: #fffbef; border-left-color: #a54a30; }
+.origin-scroll .scroll-step-label { color: #8c422e; }
+.origin-scroll .scroll-story-step h3 { font-size: clamp(28px, 2.5vw, 36px); color: #142b30; }
+.origin-scroll .scroll-story-step p { color: #354c4b; }
+.origin-scroll .scroll-story-meter > span { color: #803b28; }
+.origin-scroll .scroll-story-meter i { background: #142b3026; }
+.origin-scroll .scroll-story-meter i[data-active="true"] { background: #a54a30; }
+.origin-scroll .scroll-story-frames { height: clamp(300px, 54svh, 510px); }
+.origin-scroll .scroll-frame-myspace-robotics { background: #142328; }
+.origin-scroll .scroll-frame-myspace-robotics img { object-fit: contain; object-position: center; }
+.origin-scroll .scroll-story-caption strong { font-size: clamp(24px, 2.6vw, 34px); }
+.origin-footnotes { margin-top: 24px; }
+.story-prologue { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; margin-bottom: 32px; }
+.origin-panel { position: relative; align-self: stretch; margin: 0; min-height: 460px; border: 3px solid var(--comic-black); background: #142b30; box-shadow: 8px 8px 0 #142b30; overflow: hidden; }
+.origin-panel img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 40% center; }
+.origin-panel figcaption { position: absolute; bottom: 20px; left: 20px; right: 20px; padding: 12px 16px; background: #fff3d5; color: var(--comic-black); border: 2px solid var(--comic-black); font-family: var(--font-display); font-size: 24px; transform: rotate(-2deg); }
+.immersive-comic .panel-story { grid-area: auto; position: static; padding: 16px 0; border: 0; background: transparent; box-shadow: none; overflow: visible; }
+.story-lead { font-size: 18px; line-height: 1.6; font-weight: 500; margin: 0 0 24px; }
+.personal-footnotes { border-top: 1px solid #142b3040; padding-top: 18px; font-size: 13px; line-height: 1.75; }
+.personal-footnotes summary { cursor: pointer; font-weight: 600; }
+.personal-footnotes p { margin-bottom: 0; }
+.immersive-comic .timeline { counter-reset: milestone; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; }
+.immersive-comic .timeline-item { counter-increment: milestone; position: relative; display: block; width: 100%; margin: 0; transform: none; border: 2px solid var(--comic-black); border-radius: 0; padding: 28px 30px 28px 72px; background: #fff9eb; box-shadow: 5px 5px 0 #142b30; }
+.immersive-comic .timeline-item::after { content: "0" counter(milestone); position: absolute; top: 26px; left: 22px; color: #c66b40; font-family: var(--font-display); font-size: 30px; line-height: 1; }
+.immersive-comic .timeline-marker { display: none; }
+.immersive-comic .timeline-year { color: #9d4227; font-size: 11px; font-weight: 700; letter-spacing: .12em; margin: 0 0 10px; }
+.immersive-comic .timeline-title { font-size: 19px; line-height: 1.3; margin: 0 0 12px; }
+.immersive-comic .timeline-detail { font-size: 14px; line-height: 1.75; margin: 0; }
+.immersive-comic .timeline-item:last-child { grid-column: 1 / -1; background: #173439; color: #fff3d5; }
+.immersive-comic .timeline-item:last-child .timeline-year { color: #ffc979; }
+.immersive-comic .timeline-item:last-child .timeline-detail { color: #e4e7db; max-width: 80ch; }
+.immersive-comic #work { background-color: #e6eadd; }
+.immersive-comic .panel-work-grid { padding: 0; border: 0; background: none; box-shadow: none; overflow: visible; }
+.immersive-comic .work-grid-head { padding: 0; border: 0; margin: 0 0 24px; background: none; max-width: 760px; }
+.immersive-comic .work-grid { grid-template-columns: 1fr; gap: 32px; }
+.immersive-comic .work-card { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 0; padding: 0; border: 2px solid var(--comic-black); border-radius: 2px; overflow: hidden; background: #fff9eb; box-shadow: 7px 7px 0 var(--comic-black); transition: translate 200ms, box-shadow 200ms; }
+.immersive-comic .work-card:hover { translate: 0 -4px; box-shadow: 9px 11px 0 var(--comic-black); }
+.immersive-comic .work-card-media { aspect-ratio: auto; min-height: 350px; border: 0; border-radius: 0; }
+.immersive-comic .work-card-copy { padding: 32px 36px; }
+.immersive-comic .work-card:nth-child(2) .work-card-media { order: 2; }
+.immersive-comic .work-card-header { gap: 9px; flex-wrap: wrap; margin: 0; }
+.immersive-comic .work-card-header .eyebrow { font-size: 9px; letter-spacing: .1em; }
+.immersive-comic .work-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 39px); font-weight: 400; text-transform: uppercase; line-height: 1.08; max-width: 22ch; }
+.immersive-comic .work-summary { font-size: 14px; line-height: 1.75; }
+.immersive-comic .work-meta { gap: 18px; }
+.immersive-comic .work-meta .text-link { font-size: 13px; }
+.immersive-comic .work-all-projects-cta { margin-top: 40px; }
+.immersive-comic #resume { background-color: #f3e5cb; }
+.immersive-comic .resume-comic { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 44px; align-items: center; }
+.immersive-comic .panel-resume-frame { width: min(100%, 330px); justify-self: center; }
+.immersive-comic .panel-resume-intro { padding: 0; border: 0; box-shadow: none; background: transparent; }
+.immersive-comic .resume-list { margin-top: 28px; gap: 0; }
+.immersive-comic .resume-list li { padding: 16px 0; border-bottom: 1px solid #142b3030; }
+.immersive-comic .resume-role { font-size: 14px; line-height: 1.5; }
+.immersive-comic .resume-meta { font-size: 12px; }
+.resume-issue { display: block; background: #f8c47b; border: 3px solid #142b30; box-shadow: 10px 10px 0 #142b30; transform: rotate(2deg); text-decoration: none; overflow: hidden; color: #142b30; transition: transform 250ms; }
+.resume-issue:hover { transform: rotate(0); }
+.resume-issue-bar { display: flex; justify-content: space-between; padding: 9px 13px; background: #142b30; color: #fff3d5; font-size: 8px; letter-spacing: .1em; }
+.resume-issue img { width: 100%; aspect-ratio: 3 / 4; height: auto; display: block; object-fit: cover; object-position: center; filter: saturate(.9); }
+.resume-issue-bottom { padding: 11px 14px; background: #fff3d5; border-top: 3px solid #142b30; }
+.resume-issue-bottom > span { display: block; font-size: 10px; margin-bottom: 4px; }
+.resume-issue-bottom strong { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 24px; text-transform: uppercase; font-weight: 400; }
+.resume-opening-backdrop { position: fixed; inset: 0; z-index: 998; background: #142b30; pointer-events: none; }
+.resume-opening-book { position: fixed; z-index: 999; pointer-events: none; transform-origin: top left; perspective: 1600px; }
+.resume-opening-inside { position: absolute; inset: 0; overflow: hidden; display: flex; flex-direction: column; padding: 20px 18px; border: 3px solid #142b30; background: #fff9eb; box-shadow: 8px 9px 0 #09161a; color: #142b30; }
+.resume-opening-inside .resume-opening-kicker { color: #a54830; font-size: 8px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.resume-opening-inside strong { margin: 14px 0 8px; font-family: var(--font-display); font-size: 30px; font-weight: 400; line-height: .95; text-transform: uppercase; }
+.resume-opening-inside > span:nth-child(3) { font-size: 10px; font-weight: 700; }
+.resume-opening-preview { display: grid; gap: 7px; margin-top: 20px; }
+.resume-opening-preview b { margin-top: 7px; color: #a54830; font-size: 8px; letter-spacing: .09em; }
+.resume-opening-preview span { font-size: 9px; font-weight: 700; }
+.resume-opening-preview i { display: block; height: 4px; width: 92%; background: #142b3035; }
+.resume-opening-preview i:nth-of-type(2n) { width: 76%; }
+.resume-opening-inside small { margin-top: auto; padding-top: 12px; border-top: 1px solid #142b3040; color: #94513a; font-size: 8px; font-weight: 700; }
+.resume-opening-leaf { position: absolute; inset: 0; transform-origin: left center; transform-style: preserve-3d; }
+.resume-opening-front, .resume-opening-back { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; }
+.resume-issue.resume-opening-front { margin: 0; transform: none; transition: none; box-shadow: 5px 7px 12px #09161a70; }
+.resume-opening-back { transform: rotateY(180deg); border: 3px solid #142b30; background: linear-gradient(105deg, #d5c6a6, #fff4d9 18%, #f9e8c2 85%, #b59f78); box-shadow: -9px 8px 14px #09161a78; }
+.resume-opening-back::after { content: "CN / ISSUE 01"; position: absolute; left: 18px; bottom: 18px; color: #142b30; font-family: var(--font-display); font-size: 22px; transform: rotate(-3deg); }
+.immersive-comic #contact { background-color: #d4e0d8; }
+.immersive-comic .contact-comic { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 48px; align-items: center; }
+.immersive-comic .panel-contact-intro { padding: 0; border: 0; background: none; box-shadow: none; min-height: 0; display: block; }
+.immersive-comic .panel-contact-intro .section-title { font-size: clamp(38px, 4.6vw, 62px); margin: 18px 0 25px; line-height: 1.02; }
+.immersive-comic .contact-panel-links { gap: 15px; margin-top: 32px; }
+.immersive-comic .contact-panel-links a { overflow-wrap: anywhere; font-size: 14px; }
+.immersive-comic .contact-form { padding: 32px; background: #fff9eb; gap: 20px; }
+.immersive-comic .form-field { font-size: 12px; gap: 8px; }
+.immersive-comic .form-field input, .immersive-comic .form-field textarea { width: 100%; min-width: 0; font-size: 16px; border-radius: 2px; padding: 12px; background: #fffdf6; }
+.immersive-comic .form-field input { min-height: 46px; }
+.immersive-comic .form-field textarea { min-height: 140px; }
+.immersive-comic .contact-note { border: 2px solid #142b30; border-top: 6px solid #142b30; box-shadow: 8px 8px 0 #142b3029; gap: 24px; }
+.contact-note-heading .eyebrow { margin: 0 0 10px; }
+.contact-note-heading h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: clamp(30px, 3vw, 38px); line-height: 1.05; text-transform: uppercase; font-weight: 400; }
+.contact-note-heading > p:last-child { margin: 0; font-size: 14px; line-height: 1.6; color: #4d605e; }
+.contact-details-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.immersive-comic .contact-note .form-field { color: #203a3b; font-size: 13px; }
+.immersive-comic .contact-note input, .immersive-comic .contact-note textarea { border: 1px solid #82928a; box-shadow: none; font-weight: 400; line-height: 1.5; }
+.immersive-comic .contact-note textarea { resize: vertical; min-height: 160px; }
+.contact-note-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; }
+.contact-note-footer .button { display: inline-flex; justify-content: space-between; gap: 24px; font-size: 13px; padding: 13px 18px; }
+.contact-note-footer p { margin: 0; font-size: 11px; line-height: 1.6; color: #4d605e; }
+.immersive-comic > .chapter-card:last-child { min-height: 84px; padding-block: 18px; }
+.immersive-comic > .chapter-card:last-child .chapter-title { font-size: 32px; }
+.comic-reader { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 44px; padding: 10px 4%; color: var(--comic-cream); background: #101b20; border-top: 1px solid #71817f; font-size: 10px; text-transform: uppercase; letter-spacing: .13em; }
+.reader-issue { color: #ffd348; font-weight: 700; }
+.reader-navigation { display: flex; align-items: center; gap: 20px; }
+.reader-navigation a { text-decoration: none; color: #ffe6b1; font-size: 22px; line-height: 1; padding: 2px 8px; }
+.reader-navigation a[aria-disabled="true"] { opacity: .25; pointer-events: none; }
+.reader-chapter { min-width: 180px; text-align: center; }
+.comic-reader button { border: 0; background: none; color: inherit; font: inherit; text-transform: uppercase; cursor: pointer; padding: 3px; }
+.reader-progress { position: absolute; top: -3px; left: 0; right: 0; height: 3px; }
+.reader-progress span { display: block; width: 100%; height: 100%; background: var(--comic-orange); transform-origin: left; }
+.immersive-comic[data-motion-paused="true"] *, .immersive-comic[data-motion-paused="true"] *::before, .immersive-comic[data-motion-paused="true"] *::after { animation: none !important; transition: none !important; }
+
+.immersive-comic .comic-enter { animation: ink-reveal 700ms cubic-bezier(.2,.7,.2,1) both; }
+@keyframes ink-reveal { from { clip-path: inset(0 0 100% 0); translate: 0 24px; } to { clip-path: inset(-30px -30px -30px -30px); translate: 0 0; } }
+
+
+@media (max-width: 767px) {
+  .scroll-story-heading { display: block; margin-bottom: 16px; }
+  .scroll-story-intro { margin-top: 12px; font-size: 12px; }
+  .scroll-story { display: block; }
+  .scroll-story-stage { top: 68px; padding-top: 8px; }
+  .scroll-story-frames { height: clamp(190px, 32svh, 290px); }
+  .scroll-story-frame img { object-position: center 45%; }
+  .scroll-story-cue { font-size: 10px; top: 10px; left: 10px; padding: 6px 9px; }
+  .scroll-story-caption { bottom: 12px; left: 14px; }
+  .scroll-story-caption strong { font-size: 26px; }
+  .scroll-story-meter { padding: 12px 0; }
+  .scroll-story-meter > span { font-size: 9px; }
+  .scroll-story-step { min-height: 160px; padding: 22px 18px; }
+  .scroll-story-step h3 { font-size: 28px; }
+  .scroll-story-step p { font-size: 13px; }
+  .origin-intro { margin-top: 16px; font-size: 13px; }
+  .origin-scroll .scroll-story-frames { height: clamp(190px, 32svh, 290px); }
+  .origin-scroll .scroll-story-step { min-height: 210px; padding: 24px 18px; }
+  .origin-scroll .scroll-story-step h3 { font-size: 28px; }
+  .origin-scroll .scroll-story-meter > span { font-size: 8px; letter-spacing: .02em; }
+  .immersive-comic #who-i-am { padding: 28px 0 24px; }
+  .immersive-comic .hero { padding-top: 20px; }
+  .immersive-comic .hero-comic { grid-template-columns: 1fr; min-height: auto; }
+  .cover-copy { padding: 0 0 30px; }
+  .cover-edition { font-size: 9px; }
+  .cover-copy h1 { font-size: clamp(5.2rem, 20vw, 9rem); margin: 20px 0; }
+  .cover-deck { font-size: 2rem; }
+  .cover-description { max-width: none; }
+  .immersive-comic .hero-portrait { width: 85%; margin: 0 auto 25px; }
+  .immersive-comic .hero-portrait .hero-media { height: 430px; max-height: 65svh; }
+  .cover-stamp { width: 105px; height: 105px; font-size: 24px; right: -25px; }
+  .cover-caption { left: -20px; font-size: 22px; }
+  .cover-footer { font-size: 8px; gap: 15px; }
+  .immersive-comic > .chapter-card { min-height: 92px; padding: 18px 20px; }
+  .immersive-comic > .chapter-card::after { width: 65%; }
+  .immersive-comic .section { padding: 30px 0; }
+  .comic-reader { font-size: 8px; gap: 8px; padding-inline: 3%; }
+  .reader-issue { display: none; }
+  .reader-navigation { gap: 2px; }
+  .reader-navigation a { padding-inline: 5px; }
+  .reader-chapter { min-width: 140px; font-size: 8px; }
+  .immersive-comic .container { width: calc(100% - 40px); }
+  .immersive-comic .hero-portrait { width: 85%; max-width: 420px; }
+  .cover-footer { line-height: 1.6; }
+  .immersive-comic .chapter-title { font-size: clamp(27px, 6vw, 36px); }
+  .immersive-comic .section-title { font-size: 36px; }
+  .story-prologue { grid-template-columns: 1fr; gap: 28px; margin-bottom: 35px; }
+  .origin-panel { aspect-ratio: 3 / 2; min-height: 0; }
+  .origin-panel figcaption { font-size: 19px; left: 12px; right: 12px; bottom: 12px; }
+  .story-lead { font-size: 17px; }
+  .immersive-comic .timeline { grid-template-columns: 1fr; gap: 20px; }
+  .immersive-comic .timeline-item { padding: 23px 22px 23px 62px; }
+  .immersive-comic .timeline-item::after { left: 18px; font-size: 26px; }
+  .immersive-comic .work-card { grid-template-columns: 1fr; }
+  .immersive-comic .work-card:nth-child(2) .work-card-media { order: 0; }
+  .immersive-comic .work-card-media { min-height: 0; }
+  .immersive-comic .work-card-copy { padding: 26px; }
+  .immersive-comic .work-title { font-size: 31px; }
+  .immersive-comic .resume-comic { grid-template-columns: 1fr; grid-template-areas: none; gap: 40px; }
+  .immersive-comic .panel-resume-intro, .immersive-comic .panel-resume-frame { grid-area: auto; }
+  .immersive-comic .panel-resume-frame { width: min(100% - 18px, 310px); margin: auto; }
+  .immersive-comic .contact-comic { grid-template-columns: 1fr; gap: 28px; }
+  .contact-details-row { grid-template-columns: 1fr; gap: 18px; }
+  .immersive-comic .contact-form { padding: 24px; }
+  .immersive-comic .contact-panel-links a { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .immersive-comic *, .immersive-comic *::before, .immersive-comic *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .immersive-comic .hero-portrait { transform: rotate(4deg); }
+  .immersive-comic .hero-panel-bg, .cover-copy { transform: none; }
+}

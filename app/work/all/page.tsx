@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import MotionOrchestrator from "@/components/MotionOrchestrator";
 import YearJumpSelect from "../../../components/YearJumpSelect";
+import ArchiveYearEffects from "@/components/ArchiveYearEffects";
 import { projectHistory } from "@/content/project-history";
 
 export const metadata: Metadata = {
@@ -94,8 +95,9 @@ export default function AllProjectsPage() {
   }));
 
   return (
-    <main className="main work-all-page">
+    <main className="main work-all-page" id="main-content">
       <MotionOrchestrator />
+      <ArchiveYearEffects />
       <section className="section work-all-hero scene-04-work">
         <div className="scene-layers" aria-hidden="true">
           <div className="scene-layer layer-bg">
@@ -106,16 +108,15 @@ export default function AllProjectsPage() {
           <div className="panel angled-panel">
             <p className="eyebrow">Project Archive</p>
             <h1 className="headline">
-              <span className="tone-strong">All projects, beyond the featured case studies.</span>
-              <span className="tone-lite">Project history and notable builds.</span>
+              <span className="tone-strong">The complete collection.</span>
+              <span className="tone-lite">Projects and notable builds.</span>
             </h1>
             <p className="lead">
               <span className="tone-strong">
-                A full archive sourced from the career context timeline, including platform work,
-                startup builds, and notable product experiments.
+                Payments, platforms, startups, and the experiments along the way.
               </span>
               <span className="tone-lite">
-                A career-wide archive sourced from project notes and timeline context.
+                Explore the work, from early experiments to production platforms.
               </span>
             </p>
             <div className="hero-actions">
@@ -145,8 +146,11 @@ export default function AllProjectsPage() {
         {groupedProjects.map((group, groupIndex) => (
           <div key={group.year} id={yearSections[groupIndex]?.id} className="work-all-year-block">
             <div className="chapter-card speed-lines work-all-year-divider" role="separator">
-              <span className="chapter-label">Project Year</span>
-              <p className="chapter-title">{group.year}</p>
+              <div className="work-all-year-heading">
+                <span className="chapter-label">Project Year / {String(groupIndex + 1).padStart(2, "0")}</span>
+                <p className="chapter-title">{group.year}</p>
+              </div>
+              <span className="work-all-year-count">{group.projects.length} {group.projects.length === 1 ? "story" : "stories"} inside ↘</span>
             </div>
             <div className="container">
               <div className="work-all-year-tiles">

@@ -1,267 +1,148 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 import { projectHistory } from "@/content/project-history";
-import styles from "./page.module.css";
+import styles from "./resume.module.css";
 
 export const metadata: Metadata = {
-  title: "Full Resume",
-  description: "Full-screen resume view for Cameron Nickert."
+  title: "Resume",
+  description: "Cameron Nickert's experience building reliable payments, identity, and commerce systems."
 };
+
+const selectedSlugs = [
+  "shopify-payments-card-present-gateway",
+  "payment-methods-rollout-refund-api-ppp",
+  "update-payments-api-orchestration-3p-gift-cards",
+  "payment-methods-optimize-platform-performance-migrations",
+  "ford-payment-library",
+  "ford-pay-troubleshooting-portal",
+  "web-appetizer"
+];
+
+const selectedProjects = selectedSlugs.map((slug) => projectHistory.find((item) => item.slug === slug)).filter((item): item is (typeof projectHistory)[number] => Boolean(item));
 
 const experience = [
   {
     company: "Shopify",
     role: "Senior Software Engineer",
-    timeframe: "Nov 2024 - Present",
-    bullets: [
-      "Lead payouts and payments-platform capabilities for global merchants; drive reliability and incident response.",
-      "Improved payout reliability to 99.99%+ and reduced manual escalations by 35% through resiliency and observability work."
-    ]
-  },
-  {
-    company: "Shopify",
-    role: "Software Engineer",
-    timeframe: "Mar 2022 - Nov 2024",
-    bullets: [
-      "Built and maintained Rails services and React admin surfaces for payments operations and reconciliation.",
-      "Shipped payment-method migrations and refund flow improvements across core checkout payment paths."
+    team: "Payments Platform",
+    period: "2022–present",
+    points: [
+      "Own payment platform work across architecture, implementation, rollout, performance, and production readiness.",
+      "Led unified third-party refunds into Shopify’s processing flow, including retry and error-handling parity and a full-traffic rollout.",
+      "Expanded Payments API orchestration for asynchronous redeemables and multiple charges in one payment.",
+      "Resolved migration performance bottlenecks in checkout paths and helped prepare systems for peak events through load validation and game days."
     ]
   },
   {
     company: "Indeed",
     role: "Software Engineer II",
-    timeframe: "Nov 2021 - Mar 2022",
-    bullets: ["Contributed to identity and authentication platform services for core user flows, emphasizing security and reliability."]
+    team: "Identity Platform",
+    period: "2021–2022",
+    points: [
+      "Maintained authentication and account services used by job seekers and employers.",
+      "Contributed to secure identity flows across Java, Spring Boot, React, and TypeScript."
+    ]
   },
   {
     company: "Ford Motor Company",
-    role: "Software Engineering Team Lead / Software Engineer",
-    timeframe: "Jun 2018 - Nov 2021",
-    bullets: [
-      "Led payments, checkout, and web initiatives with focus on reliability, incident readiness, and delivery.",
-      "Built internal and customer-facing systems with Java/Spring and React."
+    role: "Software Engineering Team Lead",
+    team: "Payments + Web Experiences",
+    period: "2018–2021",
+    points: [
+      "Led an embedded payment library for secure reservations and digital purchases across Ford web properties.",
+      "Led a support portal that let teams diagnose payment failures without direct database or log access."
     ]
   }
 ];
 
-const selectedProjects = [
-  projectHistory.find((item) => item.slug === "shopify-payments-card-present-gateway-emv-foundation"),
-  projectHistory.find((item) => item.slug === "payment-methods-rollout-refund-api-ppp"),
-  projectHistory.find((item) => item.slug === "web-appetizer")
-].filter((item): item is (typeof projectHistory)[number] => Boolean(item));
-
-const projectTitleOverrides: Record<string, string> = {
-  "shopify-payments-card-present-gateway-emv-foundation": "Card-Present Gateway: EMV Foundation",
-  "payment-methods-rollout-refund-api-ppp": "Refund API Rollout for PPP"
-};
-
-const interests = ["Travel", "Hiking", "Camping", "Boating", "Sports", "Family"];
-
-const projectImpactWins: Record<string, string[]> = {
-  "payment-methods-rollout-refund-api-ppp": ["99.99%+ payout reliability", "35% fewer manual escalations"],
-  "shopify-payments-card-present-gateway-emv-foundation": ["Provider-agnostic EMV foundation"],
-  "web-appetizer": ["Checkout decisioning improvements (Shop Pay Installments)"]
-};
-
-const projectTimeframeOverrides: Record<string, string | null> = {
-  "shopify-payments-card-present-gateway-emv-foundation": "2024"
-};
-
-const operatingPrinciples = [
-  "Bias for simple, observable systems over complex novelty.",
-  "Design for migration safety, rollback paths, and operational clarity.",
-  "Ship in measurable slices with merchant impact as the decision anchor."
-];
+const ventureSlugs = ["staffed-ai-services", "web-appetizer", "lambda-eats-saas"];
+const ventures = ventureSlugs.map((slug) => projectHistory.find((item) => item.slug === slug)).filter((item): item is (typeof projectHistory)[number] => Boolean(item));
 
 const skillGroups = [
-  {
-    label: "Backend",
-    items: ["Ruby", "Rails", "Java", "Spring Boot", "Node.js"]
-  },
-  {
-    label: "Frontend",
-    items: ["TypeScript", "JavaScript", "React", "HTML", "CSS"]
-  },
-  {
-    label: "Cloud & Data",
-    items: ["AWS Lambda", "S3", "Cognito", "DynamoDB", "SQL", "GCP", "CI/CD"]
-  }
+  { title: "Engineering", items: "Ruby on Rails · Java · Spring Boot · React · TypeScript · Node.js" },
+  { title: "Systems", items: "Distributed systems · API design · SQL · Kafka · Performance · Observability" },
+  { title: "Cloud & commerce", items: "GCP · Cloud Run · AWS Lambda · DynamoDB · Stripe · Payments" }
 ];
-const domainExpertise = ["Payments", "Reliability", "Identity", "E-commerce"];
 
-const projectImpactNotes: Record<string, string> = {
-  "shopify-payments-card-present-gateway-emv-foundation":
-    "Focus: provider-agnostic EMV foundation enabling resilient card-present payments.",
-  "payment-methods-rollout-refund-api-ppp":
-    "Focus: unified refund orchestration across third-party payment providers with reliable rollout controls.",
-  "web-appetizer": "Focus: practical SMB ordering flows with stable Stripe-backed payments."
-};
-
-export default function FullscreenResumePage() {
+export default function ResumePage() {
   return (
-    <main id="main-content" className={styles.root}>
-      <div className={styles.sheetWrap}>
-        <article className={styles.sheet} aria-label="Cameron Nickert full resume">
-          <div className={styles.issueBar}>
-            <span>Issue #01</span>
-            <span>Resume Origin Story</span>
-            <span>One-Page Edition</span>
+    <main id="main-content" className={styles.resume}>
+      <div className={styles.shell}>
+        <nav className={styles.utility} aria-label="Resume actions">
+          <Link href="/#resume">← Back to the story</Link>
+          <span>CN / THE COLLECTED EXPERIENCE</span>
+          <div className={styles.utilityActions}>
+            <ThemeToggle compact />
+            <a href="mailto:cameron@nickert.dev">Get in touch ↗</a>
           </div>
-          <header className={styles.header}>
-            <div className={styles.headerLeft}>
-              <div className={styles.headerIdentity}>
-                <div className={styles.portraitPanel} aria-hidden="true">
-                  <img src="/assets/scene-01-hero/portrait-cameron.png" alt="" />
-                </div>
-                <div className={styles.headerText}>
-                  <h1 className={styles.name}>Cameron Michael Nickert, M.S.</h1>
-                  <p className={styles.title}>Senior Software Engineer · Payments Platform · Merchant Reliability</p>
-                  <p className={styles.metaLine}>
-                    Payments platform engineer focused on merchant trust · Detroit Metropolitan Area
-                  </p>
-                  <div className={styles.headerMetaRows}>
-                    <div className={styles.headerMetaRow}>
-                      <p className={styles.headerMetaLabel}>Domain</p>
-                      <ul className={styles.headerPills}>
-                        {domainExpertise.map((item) => (
-                          <li key={item} className={styles.headerPill}>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className={styles.headerMetaRow}>
-                      <p className={styles.headerMetaLabel}>Interests</p>
-                      <ul className={styles.headerPills}>
-                        {interests.map((item) => (
-                          <li key={item} className={styles.headerPill}>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        </nav>
+        <article className={styles.paper}>
+          <header className={styles.hero}>
+            <div className={styles.heroIdentity}>
+              <p className={styles.kicker}>The collected experience · Vol. 01</p>
+              <h1>Cameron Nickert<span>.</span></h1>
+              <p>Senior Software Engineer · Payments, platforms, and merchant trust.</p>
             </div>
-            <ul className={styles.contactList}>
-              <li>
-                <a href="mailto:cameron@nickert.dev">cameron@nickert.dev</a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/cameron-nickert" target="_blank" rel="noreferrer">
-                  linkedin.com/in/cameron-nickert
-                </a>
-              </li>
-              <li>
-                <a href="https://cameron.nickert.dev" target="_blank" rel="noreferrer">
-                  cameron.nickert.dev
-                </a>
-              </li>
-            </ul>
+            <div className={styles.contact}>
+              <span>Detroit Metro, Michigan</span>
+              <a href="mailto:cameron@nickert.dev">cameron@nickert.dev</a>
+              <a href="https://www.linkedin.com/in/cameron-nickert" target="_blank" rel="noreferrer">linkedin.com/in/cameron-nickert</a>
+              <a href="https://cameron.nickert.dev">cameron.nickert.dev</a>
+            </div>
           </header>
-
-          <div className={styles.grid}>
-            <section className={styles.left}>
-              <div className={`${styles.block} ${styles.blockTape}`}>
-                <h2>Education</h2>
-                <ul className={styles.educationList}>
-                  <li>
-                    <h3 className={styles.itemHead}>University of Michigan - Dearborn</h3>
-                    <p className={styles.itemMeta}>M.S. Software Engineering · 2019 - 2021</p>
-                  </li>
-                  <li>
-                    <h3 className={styles.itemHead}>Central Michigan University</h3>
-                    <p className={styles.itemMeta}>B.S. Computer Science · 2014 - 2018</p>
-                  </li>
-                </ul>
-              </div>
-
-              <div className={styles.block}>
-                <h2>Experience</h2>
-                <ul className={styles.experienceList}>
-                  {experience.map((item) => (
-                    <li key={`${item.company}-${item.role}`}>
-                      <h3 className={styles.itemHead}>
-                        {item.role} · {item.company}
-                      </h3>
-                      <p className={styles.itemMeta}>{item.timeframe}</p>
-                      <ul>
-                        {item.bullets.map((bullet) => (
-                          <li key={bullet}>{bullet}</li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
+          <section className={styles.summary} aria-label="Professional summary">
+            <strong>In brief</strong>
+            <p>I build money-critical software for small businesses. My work spans payments, identity, and commerce systems, with an emphasis on reliability, performance, observability, and safe delivery across product and infrastructure teams.</p>
+          </section>
+          <div className={styles.introGrid}>
+            <section className={styles.section} aria-labelledby="skills-title">
+              <div className={styles.sectionHead}><span>01 / Toolkit</span><h2 id="skills-title">Capabilities</h2></div>
+              <div className={styles.skills}>{skillGroups.map((group) => <p key={group.title}><strong>{group.title}</strong><span>{group.items}</span></p>)}</div>
             </section>
-
-            <section className={styles.right}>
-              <div className={styles.block}>
-                <h2>Skills</h2>
-                <ul className={styles.skillsGrid}>
-                  {skillGroups.map((group) => (
-                    <li key={group.label} className={styles.skillsGroup}>
-                      <p className={styles.skillsLabel}>{group.label}</p>
-                      <ul className={styles.skillPills}>
-                        {group.items.map((item) => (
-                          <li key={item} className={styles.skillPill}>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={`${styles.block} ${styles.blockSoftAccent}`}>
-                <h2>Operating Style</h2>
-                <ul className={styles.miniList}>
-                  {operatingPrinciples.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={`${styles.block} ${styles.blockTape}`}>
-                <h2>Selected Projects</h2>
-                <ul className={styles.projectList}>
-                  {selectedProjects.map((item) => {
-                    const timeframeOverride = projectTimeframeOverrides[item.slug];
-                    const timeframe = timeframeOverride === undefined ? item.timeframe : timeframeOverride;
-                    const metaParts = [item.organization ?? null, timeframe].filter(
-                      (part): part is string => Boolean(part)
-                    );
-                    const metaLine = metaParts.join(" · ");
-
-                    return (
-                      <li key={item.slug}>
-                        <h3 className={styles.itemHead}>{projectTitleOverrides[item.slug] ?? item.title}</h3>
-                        {metaLine ? <p className={styles.itemMeta}>{metaLine}</p> : null}
-                        {projectImpactWins[item.slug]?.length ? (
-                          <ul className={styles.projectWinList}>
-                            {projectImpactWins[item.slug].map((win) => (
-                              <li key={win} className={styles.projectWinBadge}>
-                                {win}
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                        <p>{item.summary}</p>
-                        {projectImpactNotes[item.slug] ? (
-                          <p className={styles.projectImpact}>{projectImpactNotes[item.slug]}</p>
-                        ) : null}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-
+            <section className={styles.section} aria-labelledby="education-title">
+              <div className={styles.sectionHead}><span>02 / Foundation</span><h2 id="education-title">Education</h2></div>
+              <div className={styles.education}><p><strong>M.S., Software Engineering</strong><span>University of Michigan–Dearborn · 2019–2021</span></p><p><strong>B.S., Computer Science</strong><span>Central Michigan University · IT and Mathematics minors · 2014–2018</span></p></div>
+              <p className={styles.mentor}><strong>FIRST Robotics mentor</strong> · Returned to my hometown school to teach wiring and programming, 2015–2016.</p>
             </section>
-
           </div>
+          <section className={styles.section} aria-labelledby="experience-title">
+            <div className={styles.sectionHead}><span>03 / Career</span><h2 id="experience-title">Experience</h2></div>
+            <div className={styles.roles}>
+              {experience.map((job) => (
+                <article className={styles.role} key={job.company}>
+                  <div className={styles.roleSide}><strong>{job.company}</strong><span>{job.period}</span></div>
+                  <div>
+                    <h3>{job.role}</h3>
+                    <p className={styles.team}>{job.team}</p>
+                    <ul>{job.points.map((point) => <li key={point}>{point}</li>)}</ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+          <section className={styles.section} aria-labelledby="projects-title">
+            <div className={styles.sectionHead}><span>04 / Proof of work</span><h2 id="projects-title">Selected projects</h2></div>
+            <div className={styles.projects}>
+              {selectedProjects.map((project, index) => (
+                <article className={styles.project} key={project.slug}>
+                  <div className={styles.projectNumber}>{String(index + 1).padStart(2, "0")}</div>
+                  <div className={styles.projectContent}>
+                    <div className={styles.projectHeading}><h3>{project.title}</h3><span>{project.timeframe}</span></div>
+                    <p>{project.summary}</p>
+                    <ul>{project.details.slice(0, 2).map((detail) => <li key={detail}>{detail}</li>)}</ul>
+                    <small>{project.technologies.slice(0, 4).join(" · ")}</small>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <Link className={styles.moreWork} href="/work/all">Explore the full project archive ↗</Link>
+          </section>
+          <section className={styles.section} aria-labelledby="ventures-title">
+            <div className={styles.sectionHead}><span>05 / Independent</span><h2 id="ventures-title">Ventures</h2></div>
+            <div className={styles.ventures}>{ventures.map((venture) => <article key={venture.slug}><div><h3>{venture.title}</h3><span>{venture.timeframe}</span></div><p>{venture.summary}</p></article>)}</div>
+          </section>
+          <footer className={styles.footer}><span>Built for the people on the other side of the software.</span><span>© 2026 Cameron Nickert</span></footer>
         </article>
       </div>
     </main>

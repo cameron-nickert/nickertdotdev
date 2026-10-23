@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import CaseArtwork from "@/components/CaseArtwork";
 import { getAllWorkSlugs, getWorkBySlug } from "@/lib/work";
 
 type PageProps = {
@@ -32,15 +33,15 @@ export default async function WorkDetailPage({ params }: PageProps) {
   }
 
   return (
-    <main className="main work-detail-page">
+    <main className="main work-detail-page" id="main-content">
       <section className="section hero">
         <div className="container">
           <div className="panel angled-panel">
             <p className="eyebrow">Case Study</p>
             <h1 className="headline">{item.title}</h1>
             <p className="lead">{item.summary}</p>
-            <div className="work-hero-media impact-frame speed-lines">
-              <img className="work-hero-image" src={item.heroImage.src} alt={item.heroImage.alt} />
+            <div className="work-hero-media">
+              <CaseArtwork slug={item.slug} />
             </div>
             <div className="hero-actions">
               <Link className="text-link" href="/">
