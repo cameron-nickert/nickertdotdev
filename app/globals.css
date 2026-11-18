@@ -107,12 +107,17 @@ body::before {
   font-weight: 700;
   transform: translateY(-200%);
   transition: transform 200ms ease;
-  z-index: 20;
+  z-index: 110;
   box-shadow: var(--shadow-pop);
 }
 
 .skip-link:focus {
   transform: translateY(0);
+}
+
+:where(.logo, .nav-link, .menu-toggle, .text-link, .footer-links a, .work-all-year-jump-select):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2143,9 +2148,17 @@ button,
 .work-card-header {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.75rem;
   color: var(--color-muted);
   margin-top: 0.5rem;
+}
+
+.organization-byline {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  --organization-mark-height: .95rem;
 }
 
 .dot {

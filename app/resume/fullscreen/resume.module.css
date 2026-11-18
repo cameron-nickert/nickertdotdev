@@ -44,11 +44,13 @@
 .sectionHead span { flex: 0 0 112px; color: #9b4932; font-size: 10px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 .sectionHead h2 { margin: 0; font-family: var(--font-display); font-size: 35px; font-weight: 400; line-height: 1; text-transform: uppercase; }
 .roles { display: grid; }
-.role { display: grid; grid-template-columns: 112px 1fr; gap: 15px; padding: 16px 0; border-top: 1px solid #142b3030; }
+.role { display: grid; grid-template-columns: minmax(0, 136px) minmax(0, 1fr); gap: 15px; padding: 16px 0; border-top: 1px solid #142b3030; }
 .role:first-child { padding-top: 0; border-top: 0; }
 .roleSide { display: grid; align-content: start; gap: 3px; font-size: 12px; line-height: 1.4; }
-.roleSide strong { font-size: 14px; }
-.roleSide span { color: #7c4c3a; }
+.roleName { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.roleName strong { font-size: 14px; }
+.roleMark { --organization-mark-height: 1.25rem; flex-shrink: 0; }
+.rolePeriod { color: #7c4c3a; white-space: nowrap; }
 .role h3 { margin: 0; font-size: 17px; line-height: 1.25; }
 .team { margin: 3px 0 8px; font-size: 12px; color: #596c68; font-style: italic; }
 .role ul { margin: 0; padding-left: 16px; display: grid; gap: 5px; }
@@ -57,9 +59,13 @@
 .project { display: grid; grid-template-columns: 29px 1fr; gap: 8px; padding: 15px; border: 1px solid #142b30; background: #fffdf6; }
 .projectNumber { color: #a54830; font-family: var(--font-display); font-size: 22px; line-height: 1; }
 .projectContent { min-width: 0; }
-.projectHeading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.projectHeading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
 .project h3 { margin: 0; font-size: 15px; line-height: 1.3; }
-.projectHeading span { color: #8c4f38; font-size: 10px; font-weight: 700; white-space: nowrap; }
+.project h3 a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.project h3 a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.projectHeading .projectByline { display: flex; align-items: center; flex-wrap: wrap; gap: 2px 8px; margin: 0; color: #8c4f38; font-size: 10px; font-weight: 700; line-height: 1.4; }
+.projectOrganization { display: inline-flex; align-items: center; gap: 5px; }
+.projectMark { --organization-mark-height: .9rem; flex-shrink: 0; }
 .project p { margin: 8px 0; font-size: 12px; line-height: 1.5; }
 .project ul { display: grid; gap: 4px; margin: 0 0 8px; padding-left: 15px; }
 .project li { font-size: 11px; line-height: 1.45; }
@@ -74,15 +80,15 @@
 .ventures { display: grid; gap: 13px; }
 .ventures article { border-top: 1px solid #142b3030; padding-top: 10px; }
 .ventures article:first-child { border-top: 0; padding-top: 0; }
-.ventures article > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .ventures h3 { margin: 0; font-size: 15px; }
-.ventures span { color: #8c4f38; font-size: 10px; font-weight: 700; white-space: nowrap; }
 .ventures p { margin: 5px 0 0; font-size: 12px; line-height: 1.5; }
 .skills { display: grid; gap: 8px; }
 .skills p, .education p { display: grid; gap: 2px; margin: 0; font-size: 12px; line-height: 1.4; }
 .skills strong, .education strong { font-size: 12px; }
 .skills span, .education span { color: #4e625d; }
 .education { display: grid; gap: 10px; }
+.schoolRow { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 9px; }
+.schoolMark { --organization-mark-height: 1.35rem; }
 .mentor { margin: 13px 0 0; padding-top: 12px; border-top: 1px solid #142b3030; font-size: 11px; line-height: 1.5; }
 .footer { display: flex; justify-content: space-between; gap: 20px; padding: 15px 36px; background: #142b30; color: #fff3d5; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 :global(html[data-theme="light"]) .resume { background: #e9deca; }
@@ -104,11 +110,10 @@
 :global(html[data-theme="dark"]) .mentor,
 :global(html[data-theme="dark"]) .introGrid .section + .section { border-color: #a9b9aa40; }
 :global(html[data-theme="dark"]) .project { background: #1b3034; border-color: #8a9f93; }
-:global(html[data-theme="dark"]) .roleSide span,
+:global(html[data-theme="dark"]) .rolePeriod,
 :global(html[data-theme="dark"]) .team,
-:global(html[data-theme="dark"]) .projectHeading span,
+:global(html[data-theme="dark"]) .projectHeading .projectByline,
 :global(html[data-theme="dark"]) .project small,
-:global(html[data-theme="dark"]) .ventures span,
 :global(html[data-theme="dark"]) .skills span,
 :global(html[data-theme="dark"]) .education span { color: #c2d1c4; }
 :global(html[data-theme="dark"]) .moreWork { color: #f4bd79; }
@@ -132,12 +137,11 @@
   .sectionHead span { display: block; margin-bottom: 7px; }
   .sectionHead h2 { font-size: 30px; }
   .role { grid-template-columns: 1fr; gap: 7px; padding: 14px 0; }
-  .roleSide { display: flex; justify-content: space-between; gap: 12px; }
+  .roleSide { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .role li { font-size: 12px; }
   .projects { grid-template-columns: 1fr; }
   .project { padding: 12px; }
-  .projectHeading { display: block; }
-  .projectHeading span { display: block; margin-top: 3px; }
+  .projectHeading { flex-direction: column; align-items: flex-start; }
   .introGrid { grid-template-columns: 1fr; }
   .introGrid > .section { padding: 20px 19px; }
   .introGrid > .section:first-child { border-right: 0; border-bottom: 2px solid #142b30; }
@@ -154,6 +158,11 @@
   :global(html[data-theme="dark"]) .hero { background: #f3bd7b; border-color: #142b30; }
   :global(html[data-theme="dark"]) .summary { background: #e4e9db; border-color: #142b30; }
   :global(html[data-theme="dark"]) .project { background: #fffdf6; border-color: #142b30; }
+  :global(html[data-theme="dark"]) .rolePeriod,
+  :global(html[data-theme="dark"]) .projectHeading .projectByline,
+  :global(html[data-theme="dark"]) .education span { color: #4e625d; }
+  .roleMark, .schoolMark, .projectMark { display: none; }
+  .schoolRow { grid-template-columns: minmax(0, 1fr); }
   .section { break-inside: auto; }
   .role, .project, .ventures article { break-inside: avoid; }
   .hero { print-color-adjust: exact; }

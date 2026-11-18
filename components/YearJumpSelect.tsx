@@ -21,19 +21,13 @@ export default function YearJumpSelect({ sections }: YearJumpSelectProps) {
 
     const updateActive = () => {
       const header = document.querySelector<HTMLElement>(".site-header");
-      const firstSection = document.getElementById(sections[0]?.id ?? "");
-      const listSection = document.querySelector<HTMLElement>(".work-all-list");
-
-      const headerOffset = (header?.offsetHeight ?? 0) + 22;
-      const leadInOffset =
-        firstSection && listSection ? Math.max(0, firstSection.offsetTop - listSection.offsetTop) : 0;
-      const probeY = window.scrollY + headerOffset - leadInOffset - 300;
+      const probeY = (header?.offsetHeight ?? 0) + 32;
 
       let nextId = sections[0]?.id ?? "";
       for (const section of sections) {
         const element = document.getElementById(section.id);
         if (!element) continue;
-        if (element.offsetTop <= probeY) {
+        if (element.getBoundingClientRect().top <= probeY) {
           nextId = section.id;
         } else {
           break;
@@ -68,18 +62,10 @@ export default function YearJumpSelect({ sections }: YearJumpSelectProps) {
     const element = document.getElementById(targetId);
     if (!element) return;
 
-    const header = document.querySelector<HTMLElement>(".site-header");
-    const firstSection = document.getElementById(sections[0]?.id ?? "");
-    const listSection = document.querySelector<HTMLElement>(".work-all-list");
-
-    const headerOffset = (header?.offsetHeight ?? 0) + 22;
-    const leadInOffset =
-      firstSection && listSection ? Math.max(0, firstSection.offsetTop - listSection.offsetTop) : 0;
-    const top = element.getBoundingClientRect().top + window.scrollY - headerOffset + leadInOffset;
-
-    window.scrollTo({
-      top,
-      behavior: "smooth"
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    element.scrollIntoView({
+      block: "start",
+      behavior: reduceMotion ? "instant" : "smooth"
     });
   };
 

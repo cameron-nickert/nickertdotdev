@@ -1,3 +1,5 @@
+import { workItems, type WorkLink } from "./work";
+
 export type ProjectHistoryItem = {
   slug: string;
   title: string;
@@ -6,9 +8,19 @@ export type ProjectHistoryItem = {
   summary: string;
   details: string[];
   technologies: string[];
+  links?: WorkLink[];
 };
 
 export const projectHistory: ProjectHistoryItem[] = [
+  ...workItems.filter((item) => item.includeInArchive).map((item) => ({
+    slug: item.slug,
+    title: item.title,
+    timeframe: item.year,
+    organization: item.organization,
+    summary: item.summary,
+    details: item.approach.slice(0, 2),
+    technologies: item.stack
+  })),
   {
     slug: "shopify-payments-card-present-gateway",
     title: "Shopify Payments: Card-Present Gateway",
@@ -22,7 +34,13 @@ export const projectHistory: ProjectHistoryItem[] = [
       "Added provider-routing controls and rollout safeguards, with operational guidance for incident response.",
       "Contributed to feature parity and production readiness for the initial merchant rollout."
     ],
-    technologies: ["Ruby on Rails", "Payments Platform", "EMV", "POS", "API Design", "Systems Design"]
+    technologies: ["Ruby on Rails", "Payments Platform", "EMV", "POS", "API Design", "Systems Design"],
+    links: [{
+      label: "Accepting card payments with Shopify POS",
+      href: "https://help.shopify.com/en/manual/sell-in-person/shopify-pos/payment-management/card-payments",
+      kind: "Related functionality",
+      context: "The in-store card payment experience for retail staff and shoppers."
+    }]
   },
   {
     slug: "payment-methods-rollout-refund-api-ppp",
@@ -99,7 +117,13 @@ export const projectHistory: ProjectHistoryItem[] = [
       "Contributed to product/technical framing aimed at improved conversion outcomes.",
       "Built a working prototype and experimentation plan; initiative did not proceed to launch."
     ],
-    technologies: ["Shop Pay Installments", "Checkout", "Product Experimentation", "UX", "Analytics"]
+    technologies: ["Shop Pay Installments", "Checkout", "Product Experimentation", "UX", "Analytics"],
+    links: [{
+      label: "Installment banners on product pages",
+      href: "https://shopify.dev/docs/storefronts/themes/pricing-payments/installments",
+      kind: "Related functionality",
+      context: "Shopify’s public guide to installment messaging on the product page."
+    }]
   },
   {
     slug: "spi-buyer-transaction-emails-lift-shift",
@@ -113,7 +137,13 @@ export const projectHistory: ProjectHistoryItem[] = [
       "Prototyped routing and experience alignment across buyer app surfaces.",
       "Effort was deprioritized prior to production rollout."
     ],
-    technologies: ["Shop Pay Installments", "Messaging", "Shop", "Product Integration", "Email Systems"]
+    technologies: ["Shop Pay Installments", "Messaging", "Shop", "Product Integration", "Email Systems"],
+    links: [{
+      label: "Shop Pay Installments payments and reminders",
+      href: "https://help.shop.app/en/shop/shop-pay-installments/payments-and-refunds",
+      kind: "Related functionality",
+      context: "The buyer-facing payment schedule and notification experience."
+    }]
   },
   {
     slug: "spi-loss-remediation",
@@ -168,7 +198,13 @@ export const projectHistory: ProjectHistoryItem[] = [
       "Supported stable, secure identity experiences at scale.",
       "Worked across backend services and frontend product surfaces."
     ],
-    technologies: ["React", "Java", "TypeScript", "Spring Boot"]
+    technologies: ["React", "Java", "TypeScript", "Spring Boot"],
+    links: [{
+      label: "Creating an Indeed account or signing in",
+      href: "https://www.indeed.com/help/job-seekers/articles/360039056312-creating-an-account-or-signing-in?hl=en&co=US",
+      kind: "Related functionality",
+      context: "Indeed’s guide to account creation and sign-in for job seekers."
+    }]
   },
   {
     slug: "web-appetizer",

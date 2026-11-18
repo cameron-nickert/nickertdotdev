@@ -150,7 +150,10 @@
 .immersive-comic .work-summary { font-size: 14px; line-height: 1.75; }
 .immersive-comic .work-meta { gap: 18px; }
 .immersive-comic .work-meta .text-link { font-size: 13px; }
-.immersive-comic .work-all-projects-cta { margin-top: 40px; }
+.immersive-comic .work-all-projects-cta { margin-top: 36px; }
+.work-opportunity-link { display: inline-block; margin-bottom: 22px; }
+.immersive-comic .work-grid-additional { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 32px; }
+.immersive-comic .work-card-compact { grid-template-columns: 1fr; }
 .immersive-comic #resume { background-color: #f3e5cb; }
 .immersive-comic .resume-comic { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 44px; align-items: center; }
 .immersive-comic .panel-resume-frame { width: min(100%, 330px); justify-self: center; }
@@ -158,6 +161,7 @@
 .immersive-comic .resume-list { margin-top: 28px; gap: 0; }
 .immersive-comic .resume-list li { padding: 16px 0; border-bottom: 1px solid #142b3030; }
 .immersive-comic .resume-role { font-size: 14px; line-height: 1.5; }
+.immersive-comic .resume-role.organization-byline { display: flex; }
 .immersive-comic .resume-meta { font-size: 12px; }
 .resume-issue { display: block; background: #f8c47b; border: 3px solid #142b30; box-shadow: 10px 10px 0 #142b30; transform: rotate(2deg); text-decoration: none; overflow: hidden; color: #142b30; transition: transform 250ms; }
 .resume-issue:hover { transform: rotate(0); }
@@ -276,6 +280,7 @@
   .immersive-comic .timeline-item { padding: 23px 22px 23px 62px; }
   .immersive-comic .timeline-item::after { left: 18px; font-size: 26px; }
   .immersive-comic .work-card { grid-template-columns: 1fr; }
+  .immersive-comic .work-grid-additional { grid-template-columns: 1fr; }
   .immersive-comic .work-card:nth-child(2) .work-card-media { order: 0; }
   .immersive-comic .work-card-media { min-height: 0; }
   .immersive-comic .work-card-copy { padding: 26px; }

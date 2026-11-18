@@ -2,6 +2,8 @@
 .case-art { --case-accent: #b94e36; --case-surface: #f0cfad; position: relative; display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 3vw, 48px); min-height: 340px; height: 100%; color: #142b30; background: var(--case-surface); overflow: hidden; isolation: isolate; }
 .case-art-giftcard { --case-accent: #26776d; --case-surface: #c7d8be; }
 .case-art-library { --case-accent: #446985; --case-surface: #c0d3de; }
+.case-art-review { --case-accent: #a46934; --case-surface: #ecdbad; }
+.case-art-local { --case-accent: #426d61; --case-surface: #c3dbcc; }
 .case-art::before { content: ""; position: absolute; width: 350px; height: 350px; border: 1px solid #142b3025; border-radius: 50%; top: -170px; right: -160px; box-shadow: 0 0 0 35px #142b3008, 0 0 0 70px #142b3005; pointer-events: none; z-index: -1; }
 .case-art-number { position: absolute; top: 12px; right: 24px; font-family: var(--font-display); font-size: 100px; line-height: 1; opacity: .09; }
 .case-art-kicker { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
@@ -15,3 +17,10 @@
 .case-art-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 3vw, 40px); line-height: 1.08; text-transform: uppercase; max-width: 15ch; }
 .case-art-caption { font-size: 11px; margin-top: 10px; }
 @media (max-width: 767px) { .case-art { min-height: 300px; padding: 24px; } .case-node-core { width: 112px; min-height: 100px; } .case-node { font-size: 10px; } .case-connector { margin-inline: 7px; } }
+@media (max-width: 420px) {
+  .case-art-flow { text-align: center; }
+  .case-node { min-width: 0; }
+  .case-node-core { width: 82px; }
+  .case-node-core svg { width: 42px; height: 42px; }
+  .case-connector { min-width: 6px; margin-inline: 5px; }
+}

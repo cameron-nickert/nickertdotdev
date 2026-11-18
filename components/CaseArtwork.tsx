@@ -3,8 +3,14 @@ import "@/app/case-art.css";
 const concepts: Record<string, { number: string; title: string; start: string; center: string; end: string; caption: string; theme: string }> = {
   "payment-methods-rollout-refund-api-ppp": { number: "01", title: "One way back.", start: "Request", center: "Refund API", end: "Provider", caption: "A unified path for refunds", theme: "refund" },
   "update-payments-api-orchestration-3p-gift-cards": { number: "02", title: "Many parts. One payment.", start: "Gift card", center: "Payment", end: "Card", caption: "Flexible payment orchestration", theme: "giftcard" },
-  "ford-payment-library": { number: "03", title: "Build once. Go further.", start: "Web", center: "Payment library", end: "Apps", caption: "Shared capabilities across experiences", theme: "library" }
+  "ford-payment-library": { number: "03", title: "Build once. Go further.", start: "Web", center: "Payment library", end: "Apps", caption: "Shared capabilities across experiences", theme: "library" },
+  "hold-for-review": { number: "04", title: "Make time to review.", start: "Risk rule", center: "Review", end: "Fulfillment", caption: "A merchant review connects payment decisions with fulfillment", theme: "review" },
+  "mb-way-bizum": { number: "05", title: "Local ways to pay.", start: "Setup", center: "Eligibility", end: "Checkout", caption: "From merchant setup to an eligible local checkout option", theme: "local" }
 };
+
+export function hasCaseArtwork(slug: string) {
+  return Object.hasOwn(concepts, slug);
+}
 
 export default function CaseArtwork({ slug }: { slug: string }) {
   const concept = concepts[slug];

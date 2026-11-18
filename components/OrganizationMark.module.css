@@ -1,0 +1,41 @@
+.mark {
+  display: inline-block;
+  flex: none;
+  inline-size: calc(var(--organization-mark-height, 1.05em) * var(--mark-ratio, 1));
+  block-size: var(--organization-mark-height, 1.05em);
+  vertical-align: middle;
+  background: var(--mark-image) center / contain no-repeat;
+  filter: grayscale(1);
+  opacity: .86;
+}
+
+.mark[data-organization-mark="shopify"] {
+  --mark-image: url("/images/organization-marks/shopify.svg");
+  --mark-ratio: .88;
+  filter: grayscale(1) brightness(.85);
+}
+.mark[data-organization-mark="indeed"] { --mark-image: url("/images/organization-marks/indeed.svg"); --mark-ratio: 2.6; }
+.mark[data-organization-mark="ford"] { --mark-image: url("/images/organization-marks/ford.svg"); --mark-ratio: 2.5; }
+.mark[data-organization-mark="central-michigan"] { --mark-image: url("/images/organization-marks/central-michigan.svg"); --mark-ratio: 1.3; }
+.mark[data-organization-mark="michigan"] {
+  --mark-image: url("/images/organization-marks/michigan.svg");
+  --mark-ratio: 1.38;
+  filter: grayscale(1) brightness(.52);
+}
+
+:global(html[data-theme="dark"]) .mark {
+  filter: grayscale(1) invert(1);
+}
+
+:global(html[data-theme="dark"]) .mark[data-organization-mark="michigan"] {
+  filter: grayscale(1);
+}
+
+:global(html[data-theme="dark"]) .mark[data-organization-mark="shopify"] {
+  filter: grayscale(1) invert(1) brightness(1.65);
+}
+
+@media print {
+  .mark { print-color-adjust: exact; }
+  :global(html[data-theme="dark"]) .mark { filter: grayscale(1); }
+}

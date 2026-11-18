@@ -27,6 +27,9 @@ html, body { overflow-x: clip; }
 .work-all-page .project-history-tile, .work-all-page .project-history-tile[data-side] { width: 100%; margin: 0; transform: none; }
 .work-all-page .project-history-tile .section-title { font-size: 30px; line-height: 1.12; margin: 14px 0 20px; }
 .work-all-page .project-history-tile .body-copy { font-size: 14px; line-height: 1.75; }
+.archive-public-references { margin-top: 1rem; padding-top: .65rem; border-top: 1px solid var(--color-border); }
+.archive-public-references summary { width: fit-content; cursor: pointer; font-size: .85rem; font-weight: 700; }
+.archive-public-references summary:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .work-all-page .chapter-card, .work-detail-page .chapter-card { margin: 24px 0; min-height: 0; padding: 22px 0; transform: none; border: 0; background: #142b30; color: #fff3d5; }
 .work-all-page .chapter-label, .work-detail-page .chapter-label { color: #f4bf78; }
 .work-all-page .chapter-title, .work-detail-page .chapter-title { font-size: 32px; }

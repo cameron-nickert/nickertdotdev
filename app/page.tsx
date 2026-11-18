@@ -4,8 +4,13 @@ import { ComicMoments, ComicOrigin, ComicReader } from "@/components/ComicExperi
 import "./comic.css";
 import ContactForm from "@/components/ContactForm";
 import ResumeCoverLink from "@/components/ResumeCoverLink";
+import OrganizationMark from "@/components/OrganizationMark";
 import { profileSummary } from "@/content/profile";
 import { workItems } from "@/content/work";
+
+const featuredSlugs = ["payment-methods-rollout-refund-api-ppp", "hold-for-review", "mb-way-bizum"];
+const featuredWork = featuredSlugs.flatMap((slug) => workItems.filter((item) => item.slug === slug));
+const additionalWork = workItems.filter((item) => !featuredSlugs.includes(item.slug));
 
 export default function HomePage() {
   const workTags: string[] = [];
@@ -20,20 +25,6 @@ export default function HomePage() {
   const linkedinUrl = profileSummary.contact.linkedin.startsWith("http")
     ? profileSummary.contact.linkedin
     : `https://${profileSummary.contact.linkedin}`;
-  const workCardArt: Record<string, { src: string; alt: string }> = {
-    "payment-methods-rollout-refund-api-ppp": {
-      src: "/images/case-studies/unified-refund.png",
-      alt: "Illustration of a unified refunds architecture."
-    },
-    "update-payments-api-orchestration-3p-gift-cards": {
-      src: "/images/case-studies/giftcards.png",
-      alt: "Illustration of split tenders and asynchronous redeemables."
-    },
-    "ford-payment-library": {
-      src: "/images/case-studies/ford.png",
-      alt: "Illustration of reusable payment components across apps."
-    }
-  };
 
   return (
     <main className="main immersive-comic" id="main-content" tabIndex={-1}>
@@ -112,26 +103,28 @@ export default function HomePage() {
             </p>
             <ul className="resume-list" aria-label="Resume highlights">
               <li>
-                <span className="resume-role">Senior Software Engineer, Shopify</span>
+                <span className="resume-role organization-byline"><OrganizationMark organization="Shopify" />Senior Software Engineer, Shopify</span>
                 <span className="resume-meta">Payments Platform · 2022 - Present</span>
               </li>
               <li>
-                <span className="resume-role">Software Engineer II, Indeed</span>
+                <span className="resume-role organization-byline"><OrganizationMark organization="Indeed" />Software Engineer II, Indeed</span>
                 <span className="resume-meta">Identity Platform · 2021 - 2022</span>
               </li>
               <li>
-                <span className="resume-role">Software Engineering Team Lead, Ford</span>
+                <span className="resume-role organization-byline"><OrganizationMark organization="Ford" />Software Engineering Team Lead, Ford</span>
                 <span className="resume-meta">Payments + Web Experiences · 2018 - 2021</span>
               </li>
               <li>
                 <span className="resume-role">M.S., Software Engineering</span>
-                <span className="resume-meta">
-                  University of Michigan - Dearborn · 2019 - 2021
+                <span className="resume-meta organization-byline">
+                  <OrganizationMark organization="University of Michigan–Dearborn" />
+                  University of Michigan–Dearborn · 2019 - 2021
                 </span>
               </li>
               <li>
                 <span className="resume-role">B.S., Computer Science</span>
-                <span className="resume-meta">
+                <span className="resume-meta organization-byline">
+                  <OrganizationMark organization="Central Michigan University" />
                   Central Michigan University (Minors: IT, Mathematics) · 2014 - 2018
                 </span>
               </li>
@@ -238,6 +231,7 @@ export default function HomePage() {
                 <span className="tone-strong">Big problems.<br />Thoughtful solutions.</span>
                 <span className="tone-lite">Payments, platforms, and products.</span>
               </h2>
+              <Link className="text-link work-opportunity-link" href="/upstart">Portfolio for Upstart ↗</Link>
               <ul className="tag-list" aria-label="Focus areas">
                 {workTags.map((tag) => (
                   <li key={tag} className="tag">
@@ -247,13 +241,13 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="work-grid">
-              {workItems.map((item) => (
-                <WorkCard
-                  key={item.slug}
-                  item={item}
-                  artSrc={workCardArt[item.slug]?.src}
-                  artAlt={workCardArt[item.slug]?.alt}
-                />
+              {featuredWork.map((item) => (
+                <WorkCard key={item.slug} item={item} />
+              ))}
+            </div>
+            <div className="work-grid work-grid-additional">
+              {additionalWork.map((item) => (
+                <WorkCard key={item.slug} item={item} compact />
               ))}
             </div>
             <div className="work-all-projects-cta" data-motion="reveal">

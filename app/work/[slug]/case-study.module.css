@@ -1,0 +1,60 @@
+.heroCopy {
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .heroPanel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(24px, 4vw, 56px);
+  }
+
+  .heroPanel .heroCopy :global(.headline) {
+    font-size: clamp(42px, 5vw, 68px);
+  }
+
+  .heroPanel > :global(.work-hero-media) {
+    margin-top: 0;
+  }
+
+  .heroPanel :global(.case-art) {
+    padding-inline: clamp(26px, 3vw, 42px);
+  }
+}
+
+.heroLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem 1.5rem;
+  margin-block: 1rem .35rem;
+}
+
+.decisions {
+  display: grid;
+  gap: .8rem;
+}
+
+.decision + .decision {
+  border-top: 1px solid currentColor;
+  padding-top: .8rem;
+}
+
+.decision summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: .4rem 0;
+}
+
+.decision summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.steps {
+  display: grid;
+  gap: .4rem;
+  padding-inline-start: 1.5rem;
+  margin-block: .5rem;
+  line-height: 1.65;
+}

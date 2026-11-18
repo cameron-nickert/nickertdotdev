@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
@@ -17,21 +17,16 @@ const navItems = [
 export default function SiteHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const [activeId, setActiveId] = useState<string | null>(navItems[0]?.id ?? "home");
+  const [activeId, setActiveId] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const primaryNav = useRef<HTMLElement>(null);
+  const menuToggle = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (isHomePage) {
-      return;
+    if (isMenuOpen) {
+      primaryNav.current?.querySelector("a")?.focus();
     }
-
-    setActiveId(null);
-
-    if (window.location.hash) {
-      const cleanUrl = `${window.location.pathname}${window.location.search}`;
-      history.replaceState(null, "", cleanUrl);
-    }
-  }, [isHomePage]);
+  }, [isMenuOpen]);
 
   useEffect(() => {
     if (!isHomePage) {
@@ -53,7 +48,7 @@ export default function SiteHeader() {
       const aliasHash = aliasMap[currentHash];
 
       if (aliasHash) {
-        history.replaceState(null, "", aliasHash);
+        history.replaceState(history.state, "", aliasHash);
         const aliasTarget = document.getElementById(aliasHash.replace("#", ""));
         if (aliasTarget) {
           const prefersReducedMotion = window.matchMedia(
@@ -108,7 +103,7 @@ export default function SiteHeader() {
 
       const nextHash = `#${nextId}`;
       if (window.location.hash !== nextHash) {
-        history.replaceState(null, "", nextHash);
+        history.replaceState(history.state, "", nextHash);
       }
 
       setActiveId((current) => (current === nextId ? current : nextId));
@@ -143,8 +138,9 @@ export default function SiteHeader() {
       }
     };
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && isMenuOpen) {
         setIsMenuOpen(false);
+        menuToggle.current?.focus();
       }
     };
     window.addEventListener("resize", onResize);
@@ -163,15 +159,15 @@ export default function SiteHeader() {
           <span className="logo-wordmark">NICKERT<span>.DEV</span></span>
         </Link>
         <div className="header-actions">
-          <nav id="primary-nav" aria-label="Primary">
+          <nav id="primary-nav" aria-label="Primary" ref={primaryNav}>
             <ul className="nav-list">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a
                     className="nav-link"
                     href={item.href}
-                    data-active={activeId === item.id ? "true" : "false"}
-                    aria-current={activeId === item.id ? "page" : undefined}
+                    data-active={isHomePage && activeId === item.id ? "true" : "false"}
+                    aria-current={isHomePage && activeId === item.id ? "location" : undefined}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
@@ -184,6 +180,7 @@ export default function SiteHeader() {
         <div className="header-controls">
           <ThemeToggle />
           <button
+            ref={menuToggle}
             type="button"
             className="menu-toggle"
             aria-expanded={isMenuOpen}

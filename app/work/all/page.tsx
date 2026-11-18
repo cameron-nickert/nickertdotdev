@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import MotionOrchestrator from "@/components/MotionOrchestrator";
+import OrganizationMark from "@/components/OrganizationMark";
+import PublicProjectLinks from "@/components/PublicProjectLinks";
 import YearJumpSelect from "../../../components/YearJumpSelect";
 import ArchiveYearEffects from "@/components/ArchiveYearEffects";
 import { projectHistory } from "@/content/project-history";
+import { getAllWorkSlugs } from "@/lib/work";
 
 export const metadata: Metadata = {
   title: "All Projects",
-  description: "Complete project history including platform, startup, and product work."
+  description: "Complete project history including platform, startup, and product work.",
+  alternates: { canonical: "/work/all" }
 };
+
+const caseStudySlugs = new Set(getAllWorkSlugs());
 
 const getProjectYear = (timeframe: string) => {
   const matches = timeframe.match(/\d{4}/g);
@@ -95,7 +101,7 @@ export default function AllProjectsPage() {
   }));
 
   return (
-    <main className="main work-all-page" id="main-content">
+    <main className="main work-all-page" id="main-content" tabIndex={-1}>
       <MotionOrchestrator />
       <ArchiveYearEffects />
       <section className="section work-all-hero scene-04-work">
@@ -160,7 +166,8 @@ export default function AllProjectsPage() {
                     className="panel angled-panel project-history-tile"
                     data-side={index % 2 === 0 ? "left" : "right"}
                   >
-                    <p className="eyebrow">
+                    <p className="eyebrow organization-byline">
+                      {project.organization ? <OrganizationMark organization={project.organization} /> : null}
                       {project.organization
                         ? `${project.organization} · ${project.timeframe}`
                         : project.timeframe}
@@ -183,6 +190,19 @@ export default function AllProjectsPage() {
                         </li>
                       ))}
                     </ul>
+                    {caseStudySlugs.has(project.slug) && (
+                      <div className="hero-actions">
+                        <Link className="text-link" href={`/work/${project.slug}`} aria-label={`Read the ${project.title} case study`}>
+                          Read case study
+                        </Link>
+                      </div>
+                    )}
+                    {project.links?.length ? (
+                      <details className="archive-public-references">
+                        <summary>Public references</summary>
+                        <PublicProjectLinks links={project.links} />
+                      </details>
+                    ) : null}
                   </article>
                 ))}
               </div>

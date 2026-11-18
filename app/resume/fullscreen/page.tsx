@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import OrganizationMark from "@/components/OrganizationMark";
 import ThemeToggle from "@/components/ThemeToggle";
 import { projectHistory } from "@/content/project-history";
+import { getAllWorkSlugs } from "@/lib/work";
 import styles from "./resume.module.css";
 
 export const metadata: Metadata = {
@@ -10,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 const selectedSlugs = [
+  "hold-for-review",
+  "mb-way-bizum",
   "shopify-payments-card-present-gateway",
   "payment-methods-rollout-refund-api-ppp",
   "update-payments-api-orchestration-3p-gift-cards",
@@ -20,6 +24,7 @@ const selectedSlugs = [
 ];
 
 const selectedProjects = selectedSlugs.map((slug) => projectHistory.find((item) => item.slug === slug)).filter((item): item is (typeof projectHistory)[number] => Boolean(item));
+const caseStudySlugs = new Set(getAllWorkSlugs());
 
 const experience = [
   {
@@ -65,6 +70,25 @@ const skillGroups = [
   { title: "Cloud & commerce", items: "GCP · Cloud Run · AWS Lambda · DynamoDB · Stripe · Payments" }
 ];
 
+const education = [
+  { school: "University of Michigan–Dearborn", degree: "M.S., Software Engineering", context: "2019–2021" },
+  { school: "Central Michigan University", degree: "B.S., Computer Science", context: "IT and Mathematics minors · 2014–2018" }
+];
+
+function ProjectByline({ organization, timeframe }: { organization?: string; timeframe: string }) {
+  return (
+    <p className={styles.projectByline}>
+      {organization && (
+        <span className={styles.projectOrganization}>
+          <OrganizationMark organization={organization} className={styles.projectMark} />
+          {organization}
+        </span>
+      )}
+      <span>{timeframe}</span>
+    </p>
+  );
+}
+
 export default function ResumePage() {
   return (
     <main id="main-content" className={styles.resume}>
@@ -102,7 +126,14 @@ export default function ResumePage() {
             </section>
             <section className={styles.section} aria-labelledby="education-title">
               <div className={styles.sectionHead}><span>02 / Foundation</span><h2 id="education-title">Education</h2></div>
-              <div className={styles.education}><p><strong>M.S., Software Engineering</strong><span>University of Michigan–Dearborn · 2019–2021</span></p><p><strong>B.S., Computer Science</strong><span>Central Michigan University · IT and Mathematics minors · 2014–2018</span></p></div>
+              <div className={styles.education}>
+                {education.map(({ school, degree, context }) => (
+                  <div className={styles.schoolRow} key={school}>
+                    <OrganizationMark organization={school} className={styles.schoolMark} />
+                    <p><strong>{degree}</strong><span>{school} · {context}</span></p>
+                  </div>
+                ))}
+              </div>
               <p className={styles.mentor}><strong>FIRST Robotics mentor</strong> · Returned to my hometown school to teach wiring and programming, 2015–2016.</p>
             </section>
           </div>
@@ -111,7 +142,13 @@ export default function ResumePage() {
             <div className={styles.roles}>
               {experience.map((job) => (
                 <article className={styles.role} key={job.company}>
-                  <div className={styles.roleSide}><strong>{job.company}</strong><span>{job.period}</span></div>
+                  <div className={styles.roleSide}>
+                    <div className={styles.roleName}>
+                      <OrganizationMark organization={job.company} className={styles.roleMark} />
+                      <strong>{job.company}</strong>
+                    </div>
+                    <span className={styles.rolePeriod}>{job.period}</span>
+                  </div>
                   <div>
                     <h3>{job.role}</h3>
                     <p className={styles.team}>{job.team}</p>
@@ -128,7 +165,14 @@ export default function ResumePage() {
                 <article className={styles.project} key={project.slug}>
                   <div className={styles.projectNumber}>{String(index + 1).padStart(2, "0")}</div>
                   <div className={styles.projectContent}>
-                    <div className={styles.projectHeading}><h3>{project.title}</h3><span>{project.timeframe}</span></div>
+                    <div className={styles.projectHeading}>
+                      <h3>
+                        {caseStudySlugs.has(project.slug)
+                          ? <Link href={`/work/${project.slug}`}>{project.title}</Link>
+                          : project.title}
+                      </h3>
+                      <ProjectByline organization={project.organization} timeframe={project.timeframe} />
+                    </div>
                     <p>{project.summary}</p>
                     <ul>{project.details.slice(0, 2).map((detail) => <li key={detail}>{detail}</li>)}</ul>
                     <small>{project.technologies.slice(0, 4).join(" · ")}</small>
@@ -140,7 +184,17 @@ export default function ResumePage() {
           </section>
           <section className={styles.section} aria-labelledby="ventures-title">
             <div className={styles.sectionHead}><span>05 / Independent</span><h2 id="ventures-title">Ventures</h2></div>
-            <div className={styles.ventures}>{ventures.map((venture) => <article key={venture.slug}><div><h3>{venture.title}</h3><span>{venture.timeframe}</span></div><p>{venture.summary}</p></article>)}</div>
+            <div className={styles.ventures}>
+              {ventures.map((venture) => (
+                <article key={venture.slug}>
+                  <div className={styles.projectHeading}>
+                    <h3>{venture.title}</h3>
+                    <ProjectByline organization={venture.organization} timeframe={venture.timeframe} />
+                  </div>
+                  <p>{venture.summary}</p>
+                </article>
+              ))}
+            </div>
           </section>
           <footer className={styles.footer}><span>Built for the people on the other side of the software.</span><span>© 2026 Cameron Nickert</span></footer>
         </article>

@@ -12,6 +12,7 @@ export default function SiteFooter() {
           <nav className="footer-links" aria-label="Footer navigation">
             <Link href="/#work">Selected work</Link>
             <Link href="/resume/fullscreen">Read the résumé</Link>
+            <Link href="/upstart">Portfolio for Upstart</Link>
             <a href="mailto:cameron@nickert.dev">Get in touch ↗</a>
           </nav>
           <div className="footer-meta">
